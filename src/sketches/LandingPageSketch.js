@@ -8,11 +8,11 @@ export default function sketch(p) {
   };
 
   p.circles = function() {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 25; i++) {
       let circle = {
         x: Math.floor(Math.random() * (window.innerWidth - 30)),
         y: Math.floor(Math.random() * (window.innerHeight - 30)),
-        radius: Math.floor(Math.random() * 30 + 5),
+        radius: Math.floor(Math.random() * 30 + 20),
         dx: (Math.random() - 0.5) * 4,
         dy: (Math.random() - 0.5) * 4
       };
@@ -32,17 +32,18 @@ export default function sketch(p) {
   };
 
   p.draw = () => {
-    p.background(100);
-    p.noStroke();
+    p.background(50);
     circles.forEach(c => {
+      p.noStroke();
+      p.fill(255, 255, 255, 50);
       p.ellipse(c.x, c.y, c.radius, c.radius);
       changeVelocity(c);
       circles.forEach(circleTwo => {
-        if (
-          Math.abs(c.y - circleTwo.y) < 5 ||
-          Math.abs(c.x - circleTwo.x) < 5
-        ) {
-          p.stroke(255);
+        let a = Math.abs(c.x - circleTwo.x);
+        let b = Math.abs(c.y - circleTwo.y);
+        let distance = Math.sqrt(a * a + b * b);
+        if (distance < 200) {
+          p.stroke(255, 255, 255, 70);
           p.line(c.x, c.y, circleTwo.x, circleTwo.y);
         }
       });

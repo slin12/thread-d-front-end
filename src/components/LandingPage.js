@@ -7,6 +7,7 @@ class LandingPage extends React.Component {
     return (
       <div id="landing-page">
         <P5Wrapper sketch={sketch} />
+        <h1 id="landing-page-title">Welcome</h1>
       </div>
     );
   }
