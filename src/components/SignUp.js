@@ -1,9 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import "../css/signup.css";
 
 class SignUp extends React.Component {
+  // componentDidMount() {
+  //   if (this.props.loggedIn === false) {
+  //     this.props.history.push("/");
+  //   }
+  // }
+
   state = {
     signup: { name: "", email: "", password: "", passwordConfirm: "" },
     login: { email: "", password: "" },
@@ -21,15 +28,16 @@ class SignUp extends React.Component {
 
   handleSignUpSubmit = e => {
     e.preventDefault();
-    this.props.createUser(this.state.signup);
+    this.props.createUser(this.state.signup, this.props.history);
   };
 
   handleLoginSubmit = e => {
     e.preventDefault();
-    this.props.loginUser(this.state.login);
+    this.props.loginUser(this.state.login, this.props.history);
   };
 
   render() {
+    console.log("props in signup", this.props);
     return (
       <div>
         <h1 id="login-signup-title">thread'd</h1>
@@ -119,4 +127,8 @@ class SignUp extends React.Component {
   }
 }
 
-export default connect(null, actions)(SignUp);
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn
+});
+
+export default withRouter(connect(mapStateToProps, actions)(SignUp));

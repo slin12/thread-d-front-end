@@ -4,7 +4,7 @@ const getHeaders = () => {
   return {
     "content-type": "application/json",
     accept: "application/json",
-    Authorization: localStorage.getItem("jwt")
+    Authorization: localStorage.getItem("token")
   };
 };
 
@@ -29,6 +29,12 @@ class AuthAdapter {
       method: "post",
       headers: getHeaders(),
       body: JSON.stringify(params)
+    }).then(res => res.json());
+  }
+
+  static authorizeUser() {
+    return fetch(`${url}/auth`, {
+      headers: getHeaders()
     }).then(res => res.json());
   }
 }

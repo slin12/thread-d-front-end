@@ -12,7 +12,11 @@ export default function sketch(p) {
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     if (props.clicked) {
       p.remove();
-      props.history.push("/signup");
+      if (props.loggedIn === true) {
+        props.history.push("/dashboard");
+      } else {
+        props.history.push("/signup");
+      }
     }
   };
 
@@ -62,7 +66,6 @@ export default function sketch(p) {
   };
 
   p.draw = () => {
-    console.log("drawing");
     p.background(50);
     //loop through circles to draw them and draw lines between
     circles.forEach(c => {
