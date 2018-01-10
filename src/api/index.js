@@ -23,6 +23,14 @@ class AuthAdapter {
       })
     }).then(res => res.json());
   }
+
+  static login(params) {
+    return fetch(`${url}/auth`, {
+      method: "post",
+      headers: getHeaders(),
+      body: JSON.stringify(params)
+    }).then(res => res.json());
+  }
 }
 
 export default AuthAdapter;

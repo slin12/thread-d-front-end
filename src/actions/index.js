@@ -12,3 +12,14 @@ export function createUser(user) {
     // console.log("hit create user in actions");
   };
 }
+
+export function loginUser(user) {
+  return dispatch => {
+    AuthAdapter.login(user).then(res => {
+      if (!res.errors) {
+        localStorage.setItem("token", res.token);
+        dispatch({ type: SET_CURRENT_USER, user: res.user });
+      }
+    });
+  };
+}

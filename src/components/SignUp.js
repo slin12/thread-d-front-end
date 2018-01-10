@@ -20,9 +20,13 @@ class SignUp extends React.Component {
   };
 
   handleSignUpSubmit = e => {
-    console.log("submitted!");
     e.preventDefault();
     this.props.createUser(this.state.signup);
+  };
+
+  handleLoginSubmit = e => {
+    e.preventDefault();
+    this.props.loginUser(this.state.login);
   };
 
   render() {
@@ -85,7 +89,7 @@ class SignUp extends React.Component {
             style={{ height: window.innerHeight * 0.6 }}
           >
             <h3>log in</h3>
-            <form className="topBefore">
+            <form className="topBefore" onSubmit={this.handleLoginSubmit}>
               <input
                 id="login-email"
                 type="text"
