@@ -1,4 +1,5 @@
 import ReactS3 from "react-s3";
+import uuid from "uuid";
 
 const config = {
   bucketName: "thread-d",
@@ -38,15 +39,7 @@ export default function sketch(p) {
       p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
         let blob = dataURItoBlob(frame.imageData);
-        let file = new File([blob], "test.jpg", { type: "image/jpeg" });
-        console.log(blob);
-        console.log("file is", file);
-        // frame.imageData = frame.imageData.replace(
-        //   /^data:image\/[\w-]+;base64,/,
-        //   ""
-        // );
-        // frame.name = `${frame.filename}.${frame.ext}`;
-        // frame.type = "image/jpg";
+        let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
         ReactS3.upload(file, config)
           .then(data => console.log(data))
           .catch(err => console.error(err));
