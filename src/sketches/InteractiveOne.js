@@ -1,5 +1,16 @@
+import ReactS3 from "react-s3";
+
+const config = {
+  bucketName: "thread-d",
+  region: "us-east-1",
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET
+};
+
 export default function sketch(p) {
   let circles = [];
+  let colors = [{ r: 255, g: 255, b: 255 }, { r: 21, g: 116, b: 133 }];
+  let loop = true;
 
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
@@ -7,31 +18,59 @@ export default function sketch(p) {
     p.background(100);
   };
 
+  p.mouseWheel = function(e) {
+    circles = circles.map(c => {
+      return { ...c, diameter: (c.diameter += e.delta / 2) };
+    });
+  };
+
+  p.keyPressed = function() {
+    console.log(config);
+    if (p.keyCode === p.ENTER) {
+      p.saveFrames("out", "png", 0.25, 25, function(data) {
+        let frame = data[0];
+        ReactS3.upload(frame, config)
+          .then(data => console.log(data))
+          .catch(err => console.error(err));
+      });
+    } else {
+      if (loop === true) {
+        p.noLoop();
+        loop = false;
+      } else {
+        p.loop();
+        loop = true;
+      }
+    }
+  };
+
   p.circles = function() {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 20; i++) {
       let circle = {
-        width: Math.floor(Math.random() * window.innerWidth),
-        height: Math.floor(Math.random() * window.innerHeight),
-        radius: Math.floor(Math.random() * 30 + 1),
-        dx: Math.random() + 0.1,
-        dy: Math.random() + 0.1
+        x: Math.floor(Math.random() * (window.innerWidth - 50) + 50),
+        y: Math.floor(Math.random() * (window.innerHeight - 50) + 50),
+        diameter: Math.floor(Math.random() * 10 + 2),
+        dx: (Math.random() - 0.5) * 4,
+        dy: (Math.random() - 0.5) * 4,
+        color: colors[Math.floor(Math.random() * colors.length)]
       };
       circles.push(circle);
     }
   };
 
   p.draw = function() {
-    p.noStroke();
+    p.stroke(0);
     circles.forEach(c => {
-      p.ellipse(c.width, c.height, c.radius, c.radius);
-      if (c.width > window.innerWidth || c.width < 0) {
+      p.fill(c.color.r, c.color.g, c.color.b);
+      p.ellipse(c.x, c.y, c.diameter, c.diameter);
+      if (c.x > window.innerWidth || c.x < 0) {
         c.dx = -c.dx;
       }
-      if (c.height > window.innerHeight || c.height < 0) {
+      if (c.y > window.innerHeight || c.y < 0) {
         c.dy = -c.dy;
       }
-      c.width += c.dx;
-      c.height += c.dy;
+      c.x += c.dx;
+      c.y += c.dy;
     });
   };
 }

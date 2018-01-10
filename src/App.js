@@ -8,6 +8,7 @@ import AuthAdapter from "./api";
 import LandingPage from "./components/LandingPage";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
+import InteractiveSketch from "./components/InteractiveSketch";
 
 class App extends Component {
   state = {
@@ -54,6 +55,7 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/welcome" component={LandingPage} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/interact" component={InteractiveSketch} />
           </Switch>
         </div>
       );

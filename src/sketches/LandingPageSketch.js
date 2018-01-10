@@ -25,7 +25,7 @@ export default function sketch(p) {
       let circle = {
         x: Math.floor(Math.random() * (window.innerWidth - 50) + 50),
         y: Math.floor(Math.random() * (window.innerHeight - 50) + 50),
-        radius: Math.floor(Math.random() * 30 + 20),
+        diameter: Math.floor(Math.random() * 30 + 20),
         dx: (Math.random() - 0.5) * 4,
         dy: (Math.random() - 0.5) * 4
       };
@@ -34,10 +34,10 @@ export default function sketch(p) {
   };
 
   const changeVelocity = c => {
-    if (c.x + c.radius / 2 > window.innerWidth || c.x - c.radius / 2 < 0) {
+    if (c.x + c.diameter / 2 > window.innerWidth || c.x - c.diameter / 2 < 0) {
       c.dx = -c.dx;
     }
-    if (c.y + c.radius / 2 > window.innerHeight || c.y - c.radius / 2 < 0) {
+    if (c.y + c.diameter / 2 > window.innerHeight || c.y - c.diameter / 2 < 0) {
       c.dy = -c.dy;
     }
     c.x += c.dx;
@@ -71,7 +71,7 @@ export default function sketch(p) {
     circles.forEach(c => {
       p.noStroke();
       p.fill(255, 255, 255, 50);
-      p.ellipse(c.x, c.y, c.radius, c.radius);
+      p.ellipse(c.x, c.y, c.diameter, c.diameter);
       changeVelocity(c);
       circles.forEach(circleTwo => {
         let a = Math.abs(c.x - circleTwo.x);
