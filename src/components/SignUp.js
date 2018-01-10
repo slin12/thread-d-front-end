@@ -41,7 +41,7 @@ class SignUp extends React.Component {
                 type="text"
                 placeholder="NAME"
                 value={this.state.signup.name}
-                autocomplete="off"
+                autoComplete="off"
                 onChange={e => {
                   this.handleChange(e, "signup", "name");
                 }}
@@ -50,7 +50,7 @@ class SignUp extends React.Component {
                 id="signup-email"
                 type="text"
                 placeholder="E-MAIL"
-                autocomplete="off"
+                autoComplete="off"
                 value={this.state.signup.email}
                 onChange={e => {
                   this.handleChange(e, "signup", "email");
@@ -60,7 +60,7 @@ class SignUp extends React.Component {
                 id="signup-password"
                 type="password"
                 placeholder="PASSWORD"
-                autocomplete="off"
+                autoComplete="off"
                 value={this.state.signup.password}
                 onChange={e => {
                   this.handleChange(e, "signup", "password");
@@ -70,7 +70,7 @@ class SignUp extends React.Component {
                 id="signup-password-confirm"
                 type="password"
                 placeholder="CONFIRM PASSWORD"
-                autocomplete="off"
+                autoComplete="off"
                 value={this.state.signup.passwordConfirm}
                 onChange={e => {
                   this.handleChange(e, "signup", "passwordConfirm");
@@ -91,7 +91,7 @@ class SignUp extends React.Component {
                 type="text"
                 placeholder="E-MAIL"
                 value={this.state.login.email}
-                autocomplete="off"
+                autoComplete="off"
                 onChange={e => {
                   this.handleChange(e, "login", "email");
                 }}
@@ -100,7 +100,7 @@ class SignUp extends React.Component {
                 id="login-password"
                 type="password"
                 placeholder="PASSWORD"
-                autocomplete="off"
+                autoComplete="off"
                 value={this.state.login.password}
                 onChange={e => {
                   this.handleChange(e, "login", "password");

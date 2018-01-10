@@ -1,8 +1,14 @@
-import { CREATE_USER } from "./types";
+import { SET_CURRENT_USER } from "./types";
+import AuthAdapter from "../api";
 
-export function createUser() {
+export function createUser(user) {
   return dispatch => {
-    console.log("hit create user in actions");
-    dispatch({ type: CREATE_USER });
+    AuthAdapter.signup(user).then(res => {
+      if (!res.errors) {
+        localStorage.setItem("token", res.token);
+        dispatch({ type: SET_CURRENT_USER, user: res.user });
+      }
+    });
+    // console.log("hit create user in actions");
   };
 }
