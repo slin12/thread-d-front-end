@@ -1,5 +1,6 @@
 /* PINK: rgb(235, 81, 96);
-DARK GREY: rgb(50, 50, 50) */
+DARK GREY: rgb(50, 50, 50)
+TAN: rgb(179, 172, 167) */
 
 body {
   margin: 0;
@@ -33,5 +34,5 @@ body {
 }
 
 .landing-page-b:hover {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.3);
 }

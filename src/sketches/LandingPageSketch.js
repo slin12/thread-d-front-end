@@ -19,8 +19,8 @@ export default function sketch(p) {
   p.circles = function() {
     for (let i = 0; i < 25; i++) {
       let circle = {
-        x: Math.floor(Math.random() * (window.innerWidth - 30)),
-        y: Math.floor(Math.random() * (window.innerHeight - 30)),
+        x: Math.floor(Math.random() * (window.innerWidth - 50) + 50),
+        y: Math.floor(Math.random() * (window.innerHeight - 50) + 50),
         radius: Math.floor(Math.random() * 30 + 20),
         dx: (Math.random() - 0.5) * 4,
         dy: (Math.random() - 0.5) * 4

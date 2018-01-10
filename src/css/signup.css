@@ -11,7 +11,7 @@
 }
 
 #login-signup-title {
-  align: center;
+  text-align: center;
   margin-top: 3%;
   font-family: "Varela Round";
   font-size: 3.5em;
@@ -21,7 +21,139 @@
 
 #signup-container,
 #login-container {
+  text-align: center;
   margin-top: 10%;
   width: 40%;
-  border: 1px solid rgb(255, 255, 255);
+}
+
+#signup-container h3,
+#login-container h3 {
+  color: white;
+  font-size: 1.6em;
+  font-family: "Muli";
+}
+
+/* SIGNUP FORM */
+form {
+  margin-top: 10%;
+}
+
+input::-webkit-input-placeholder {
+  color: #b3aca7;
+  font-size: 0.875em;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: rgb(235, 81, 96);
+}
+
+input::-moz-placeholder {
+  color: #b3aca7;
+  font-size: 0.875em;
+}
+
+input:focus::-moz-placeholder {
+  color: rgb(235, 81, 96);
+}
+
+input::placeholder {
+  color: #b3aca7;
+  font-size: 0.875em;
+}
+
+input:focus::placeholder {
+  color: rgb(235, 81, 96);
+}
+
+input::-ms-placeholder {
+  color: #b3aca7;
+  font-size: 0.875em;
+}
+
+input:focus::-ms-placeholder {
+  color: rgb(235, 81, 96);
+}
+
+input:hover::-webkit-input-placeholder {
+  color: rgb(50, 50, 50);
+  font-size: 0.875em;
+}
+
+input:hover:focus::-webkit-input-placeholder {
+  color: rgb(50, 50, 50);
+}
+
+input:hover::-moz-placeholder {
+  color: rgb(50, 50, 50);
+  font-size: 0.875em;
+}
+
+input:hover:focus::-moz-placeholder {
+  color: rgb(50, 50, 50);
+}
+
+input:hover::placeholder {
+  color: rgb(50, 50, 50);
+  font-size: 0.875em;
+}
+
+input:hover:focus::placeholder {
+  color: rgb(50, 50, 50);
+}
+
+input:hover::placeholder {
+  color: rgb(50, 50, 50);
+  font-size: 0.875em;
+}
+
+input:hover:focus::-ms-placeholder {
+  color: rgb(50, 50, 50);
+}
+
+input {
+  font-family: "Muli", sans-serif;
+  font-size: 0.875em;
+  width: 470px;
+  height: 50px;
+  padding: 0px 15px 0px 15px;
+
+  background: transparent;
+  outline: none;
+  color: #b3aca7;
+
+  border: solid 1px #b3aca7;
+  border-bottom: none;
+
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+}
+
+input:hover {
+  background: #b3aca7;
+  color: rgb(50, 50, 50);
+}
+
+#signup-submit,
+#login-submit {
+  width: 502px;
+
+  padding: 0;
+  margin: -5px 0px 0px 0px;
+
+  font-family: "Muli", sans-serif;
+  font-size: 0.875em;
+  color: rgb(235, 81, 96);
+
+  outline: none;
+  cursor: pointer;
+
+  border: solid 1px #b3aca7;
+  border-top: none;
+}
+
+#signup-submit:hover,
+#login-submit:hover {
+  color: rgb(50, 50, 50);
 }
