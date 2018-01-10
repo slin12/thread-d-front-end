@@ -19,13 +19,39 @@ const dataURItoBlob = dataURI => {
 
 export default function sketch(p) {
   let circles = [];
-  let colors = [{ r: 255, g: 255, b: 255 }, { r: 21, g: 116, b: 133 }];
+  let colors = [
+    { r: 203, g: 212, b: 194 },
+    { r: 219, g: 235, b: 192 },
+    { r: 195, g: 178, b: 153 },
+    { r: 129, g: 83, b: 85 },
+    { r: 82, g: 50, b: 73 }
+  ];
   let loop = true;
 
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
     this.circles();
     p.background(100);
+  };
+
+  //after button is clicked, do all the heavy lifting
+  p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
+    if (props.saved) {
+      console.log("made it!");
+      p.saveFrames("test", "jpg", 0.25, 25, function(data) {
+        let frame = data[0];
+        let blob = dataURItoBlob(frame.imageData);
+        let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
+        ReactS3.upload(file, config)
+          .then(data => {
+            //ADD FETCH REQUEST HERE TO SEND URL TO RAILS
+            console.log(data);
+          })
+          .catch(err => console.error(err));
+        p.remove();
+        props.history.push("/dashboard");
+      });
+    }
   };
 
   p.mouseWheel = function(e) {
@@ -35,23 +61,12 @@ export default function sketch(p) {
   };
 
   p.keyPressed = function() {
-    if (p.keyCode === p.ENTER) {
-      p.saveFrames("test", "jpg", 0.25, 25, function(data) {
-        let frame = data[0];
-        let blob = dataURItoBlob(frame.imageData);
-        let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
-        ReactS3.upload(file, config)
-          .then(data => console.log(data))
-          .catch(err => console.error(err));
-      });
+    if (loop === true) {
+      p.noLoop();
+      loop = false;
     } else {
-      if (loop === true) {
-        p.noLoop();
-        loop = false;
-      } else {
-        p.loop();
-        loop = true;
-      }
+      p.loop();
+      loop = true;
     }
   };
 
@@ -70,7 +85,7 @@ export default function sketch(p) {
   };
 
   p.draw = function() {
-    p.stroke(0);
+    p.stroke(255);
     circles.forEach(c => {
       p.fill(c.color.r, c.color.g, c.color.b);
       p.ellipse(c.x, c.y, c.diameter, c.diameter);
