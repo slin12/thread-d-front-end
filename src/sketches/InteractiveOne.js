@@ -7,6 +7,15 @@ const config = {
   secretAccessKey: process.env.REACT_APP_AWS_SECRET
 };
 
+const dataURItoBlob = dataURI => {
+  const binary = atob(dataURI.split(",")[1]);
+  let array = [];
+  for (var i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+  return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
+};
+
 export default function sketch(p) {
   let circles = [];
   let colors = [{ r: 255, g: 255, b: 255 }, { r: 21, g: 116, b: 133 }];
@@ -25,11 +34,20 @@ export default function sketch(p) {
   };
 
   p.keyPressed = function() {
-    console.log(config);
     if (p.keyCode === p.ENTER) {
-      p.saveFrames("out", "png", 0.25, 25, function(data) {
+      p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
-        ReactS3.upload(frame, config)
+        let blob = dataURItoBlob(frame.imageData);
+        let file = new File([blob], "test.jpg", { type: "image/jpeg" });
+        console.log(blob);
+        console.log("file is", file);
+        // frame.imageData = frame.imageData.replace(
+        //   /^data:image\/[\w-]+;base64,/,
+        //   ""
+        // );
+        // frame.name = `${frame.filename}.${frame.ext}`;
+        // frame.type = "image/jpg";
+        ReactS3.upload(file, config)
           .then(data => console.log(data))
           .catch(err => console.error(err));
       });
