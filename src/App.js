@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
@@ -10,6 +10,10 @@ import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 
 class App extends Component {
+  state = {
+    authCompleted: false
+  };
+
   componentWillMount() {
     if (localStorage.getItem("token")) {
       AuthAdapter.authorizeUser().then(res => {
@@ -17,22 +21,45 @@ class App extends Component {
           localStorage.clear();
         } else {
           this.props.setLoggedIn();
+          this.setState({
+            authCompleted: true
+          });
         }
+      });
+    } else {
+      this.setState({
+        authCompleted: true
       });
     }
   }
 
   render() {
     console.log("props in app", this.props);
-    return (
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/dashboard" component={Dashboard} />
-        </Switch>
-      </div>
-    );
+    console.log("state in app", this.state);
+    if (this.state.authCompleted === true) {
+      return (
+        <div className="App">
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return this.state.authCompleted && this.props.loggedIn ? (
+                  <Redirect to="/dashboard" />
+                ) : (
+                  <Redirect to="/welcome" />
+                );
+              }}
+            />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/welcome" component={LandingPage} />
+            <Route path="/dashboard" component={Dashboard} />
+          </Switch>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

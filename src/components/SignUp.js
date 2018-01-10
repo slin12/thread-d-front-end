@@ -37,7 +37,6 @@ class SignUp extends React.Component {
   };
 
   render() {
-    console.log("props in signup", this.props);
     return (
       <div>
         <h1 id="login-signup-title">thread'd</h1>
