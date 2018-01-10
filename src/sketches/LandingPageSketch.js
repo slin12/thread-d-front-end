@@ -1,10 +1,19 @@
+import "p5/lib/addons/p5.dom";
+
 export default function sketch(p) {
   let circles = [];
 
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
     this.circles();
-    console.log(circles);
+  };
+
+  //clean up after redirect
+  p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
+    if (props.clicked) {
+      p.remove();
+      props.history.push("/signup");
+    }
   };
 
   p.circles = function() {
@@ -31,8 +40,31 @@ export default function sketch(p) {
     c.y += c.dy;
   };
 
+  const text = () => {
+    //title
+    p.noStroke();
+    p.fill(235, 81, 96);
+    p.textFont("Varela Round");
+    p.textSize(75);
+    p.textStyle(p.ITALIC);
+    p.textAlign(p.CENTER);
+    p.text("thread'd", window.innerWidth / 2, window.innerHeight / 2 - 70);
+    //subheading
+    p.fill(255);
+    p.textSize(24);
+    p.textStyle(p.NORMAL);
+    p.textFont("Muli");
+    p.text(
+      "an interactive experience to create custom clothing",
+      window.innerWidth / 2,
+      window.innerHeight / 2
+    );
+  };
+
   p.draw = () => {
+    console.log("drawing");
     p.background(50);
+    //loop through circles to draw them and draw lines between
     circles.forEach(c => {
       p.noStroke();
       p.fill(255, 255, 255, 50);
@@ -48,5 +80,6 @@ export default function sketch(p) {
         }
       });
     });
+    text();
   };
 }

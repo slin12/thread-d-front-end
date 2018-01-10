@@ -1,22 +1,37 @@
+/* PINK: rgb(235, 81, 96);
+DARK GREY: rgb(50, 50, 50) */
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   height: 100%;
   width: 100%;
+  font-family: "Varela Round", sans-serif;
 }
 
 #landing-page {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   overflow: hidden;
 }
 
-#landing-page-title {
-  z-index: 1;
-  position: absolute;
-  top: 0;
+.landing-page-b {
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid rgb(235, 81, 96);
+  color: rgb(235, 81, 96);
+  height: 35px;
+  width: 150px;
+  font-family: "Muli";
+  font-size: 1.25em;
+  font-weight: 300;
+  border-radius: 5px;
+  transition: 0.5s all;
+}
+
+.landing-page-b:hover {
+  background-color: rgba(255, 255, 255, 0.7);
 }
