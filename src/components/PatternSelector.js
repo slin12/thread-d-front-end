@@ -79,7 +79,17 @@ class PatternSelector extends React.Component {
           </div>
           <h4>Choose A Color Scheme</h4>
           <div id="colors-container">{this.colors()}</div>
-          <button id="start-interaction">START</button>
+          <button
+            style={
+              this.props.selectedPattern.length > 0 &&
+              this.props.selectedColor.length > 0
+                ? null
+                : { display: "none" }
+            }
+            id="start-interaction"
+          >
+            START
+          </button>
         </div>
       </div>
     );

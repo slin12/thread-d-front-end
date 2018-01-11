@@ -18,7 +18,7 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div id="landing-page" onClick={this.handleClick}>
+      <div id="landing-page">
         <P5Wrapper
           sketch={sketch}
           clicked={this.state.clicked}
