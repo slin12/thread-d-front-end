@@ -23,11 +23,7 @@ class Render extends React.Component {
       // this helps with updates and pure rendering.
       // React will be sure that the rotation has now updated.
       this.setState({
-        cubeRotation: new THREE.Euler(
-          this.state.cubeRotation.x + 0.1,
-          this.state.cubeRotation.y + 0.1,
-          0
-        )
+        cubeRotation: new THREE.Euler(0, this.state.cubeRotation.y + 0.01, 0)
       });
     };
   }
@@ -35,7 +31,8 @@ class Render extends React.Component {
   componentDidMount() {
     const loader = new THREE.JSONLoader();
     console.log("loader", loader);
-    loader.load("tee.json", geometry => {
+    loader.load("new-origin.json", geometry => {
+      geometry.center();
       this.setState({ geometry: geometry });
       // mesh = new THREE.Mesh(geometry, material);
       // mesh.position.z = -10;
@@ -49,32 +46,39 @@ class Render extends React.Component {
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
     console.log(this.state.geometry);
-    return (
-      <React3
-        mainCamera="camera" // this points to the perspectiveCamera which has the name set to "camera" below
-        width={width}
-        height={height}
-        onAnimate={this._onAnimate}
-      >
-        <scene>
-          <perspectiveCamera
-            name="camera"
-            fov={45}
-            aspect={width / height}
-            near={0.1}
-            far={10000}
-            position={this.cameraPosition}
-          />
-          <mesh position={new THREE.Vector3(0, -10, -10)}>
-            <geometry
-              vertices={this.state.geometry.vertices}
-              faces={this.state.geometry.faces}
+    if (this.state.geometry.vertices.length > 0) {
+      return (
+        <React3
+          mainCamera="camera"
+          width={width}
+          height={height}
+          onAnimate={this._onAnimate}
+        >
+          <scene>
+            <perspectiveCamera
+              name="camera"
+              fov={45}
+              aspect={width / height}
+              near={0.1}
+              far={10000}
+              position={this.cameraPosition}
             />
-            <meshNormalMaterial />
-          </mesh>
-        </scene>
-      </React3>
-    );
+            <mesh
+              rotation={this.state.cubeRotation}
+              position={new THREE.Vector3(0, 0, -7)}
+            >
+              <geometry
+                vertices={this.state.geometry.vertices}
+                faces={this.state.geometry.faces}
+              />
+              <meshNormalMaterial />
+            </mesh>
+          </scene>
+        </React3>
+      );
+    } else {
+      return <h1>Loading...</h1>;
+    }
   }
 }
 
