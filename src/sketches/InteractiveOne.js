@@ -17,25 +17,28 @@ const dataURItoBlob = dataURI => {
   return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
 };
 
-export default function sketch(p) {
-  let circles = [];
-  let colors = [
-    { r: 203, g: 212, b: 194 },
-    { r: 219, g: 235, b: 192 },
-    { r: 195, g: 178, b: 153 },
-    { r: 129, g: 83, b: 85 },
-    { r: 82, g: 50, b: 73 }
-  ];
-  let loop = true;
+let circles = [];
+let colors = [
+  "rgb(203, 212, 194)",
+  "rgb(219, 235, 192)",
+  "rgb(195, 178, 153)",
+  "rgb(129, 83, 85)",
+  "rgb(82, 50, 73)"
+];
+let loop = true;
 
+export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
-    this.circles();
     p.background(100);
   };
 
-  //after button is clicked, do all the heavy lifting
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
+    colors = props.colors;
+    console.log("in the redraw for props!");
+    console.log("colors are", colors);
+    this.circles();
+    //when the save button is clicked
     if (props.saved) {
       p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
@@ -86,7 +89,7 @@ export default function sketch(p) {
   p.draw = function() {
     p.stroke(255);
     circles.forEach(c => {
-      p.fill(c.color.r, c.color.g, c.color.b);
+      p.fill(c.color);
       p.ellipse(c.x, c.y, c.diameter, c.diameter);
       if (c.x > window.innerWidth || c.x < 0) {
         c.dx = -c.dx;

@@ -2,7 +2,7 @@ import React from "react";
 import P5Wrapper from "react-p5-wrapper";
 import "../css/interactive.css";
 import sketch from "../sketches/InteractiveOne";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import * as actions from "../actions";
@@ -19,14 +19,16 @@ class InteractiveSketch extends React.Component {
   };
 
   render() {
-    console.log("props in sketch", this.props);
-    return (
+    return this.props.colors.length === 0 ? (
+      <Redirect to="/" />
+    ) : (
       <div id="interactive-sketch">
         <P5Wrapper
           sketch={sketch}
           saved={this.state.saved}
           history={this.props.history}
           createPattern={this.props.createPattern}
+          colors={this.props.colors}
         />
         <button
           onClick={this.handleClick}
@@ -44,4 +46,10 @@ class InteractiveSketch extends React.Component {
   }
 }
 
-export default withRouter(connect(null, actions)(InteractiveSketch));
+const mapStateToProps = state => {
+  return {
+    colors: state.patternOptions.colors
+  };
+};
+
+export default withRouter(connect(mapStateToProps, actions)(InteractiveSketch));

@@ -12,11 +12,7 @@ export default function sketch(p) {
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     if (props.clicked) {
       p.remove();
-      if (props.loggedIn === true) {
-        props.history.push("/dashboard");
-      } else {
-        props.history.push("/signup");
-      }
+      props.history.push("/signup");
     }
   };
 

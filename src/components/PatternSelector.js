@@ -3,6 +3,7 @@ import "../css/dashboard.css";
 import PatternColorSelector from "./PatternColorSelector";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 
 class PatternSelector extends React.Component {
@@ -54,6 +55,10 @@ class PatternSelector extends React.Component {
     });
   };
 
+  handleStart = () => {
+    this.props.history.push("/interact");
+  };
+
   render() {
     console.log("props in pattern selector", this.props);
     return (
@@ -87,6 +92,7 @@ class PatternSelector extends React.Component {
                 : { display: "none" }
             }
             id="start-interaction"
+            onClick={this.handleStart}
           >
             START
           </button>
@@ -103,4 +109,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, actions)(PatternSelector);
+export default withRouter(connect(mapStateToProps, actions)(PatternSelector));

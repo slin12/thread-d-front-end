@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import InteractiveSketch from "./components/InteractiveSketch";
+import Render from "./components/Render";
 
 class App extends Component {
   state = {
@@ -54,6 +55,7 @@ class App extends Component {
             <Route path="/welcome" component={LandingPage} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/interact" component={InteractiveSketch} />
+            <Route path="/render" component={Render} />
           </Switch>
         </div>
       );
