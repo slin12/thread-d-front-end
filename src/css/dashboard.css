@@ -1,0 +1,62 @@
+#dashboard-container {
+  z-index: -50;
+  background-color: rgb(50, 50, 50);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+#dashboard-title {
+  text-align: center;
+  margin-top: 3%;
+  font-family: "Libre Franklin";
+  font-size: 3.5em;
+  color: rgb(235, 81, 96);
+}
+
+#dashboard-container h4 {
+  color: rgb(179, 172, 167);
+  font-size: 1em;
+}
+
+#choices-dashboard-container {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2%;
+}
+
+.choices-child {
+  width: 40%;
+  /* border: 1px solid rgb(179, 172, 167); */
+  color: rgb(235, 81, 96);
+  box-sizing: border-box;
+}
+
+.choices-child h3 {
+  border: 1px solid rgb(179, 172, 167);
+  border-bottom: none;
+  padding: 2%;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
+#create-pattern-choices {
+  border: 1px solid rgb(179, 172, 167);
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.interactive-img {
+  max-width: 20%;
+  height: auto;
+  opacity: 0.5;
+}
+
+.interaction-selected {
+  opacity: 1;
+}

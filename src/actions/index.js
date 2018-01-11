@@ -1,4 +1,9 @@
-import { SET_CURRENT_USER, SET_LOGGED_IN, SET_CURRENT_PATTERN } from "./types";
+import {
+  SET_CURRENT_USER,
+  SET_LOGGED_IN,
+  SET_CURRENT_PATTERN,
+  SET_PATTERN_NAME
+} from "./types";
 import AuthAdapter from "../api";
 
 export function createUser(user, history) {
@@ -35,4 +40,8 @@ export function createPattern(imageUrl) {
       dispatch({ type: SET_CURRENT_PATTERN, imageUrl });
     });
   };
+}
+
+export function setPatternName(name) {
+  return { type: SET_PATTERN_NAME, name };
 }
