@@ -37,6 +37,14 @@ class AuthAdapter {
       headers: getHeaders()
     }).then(res => res.json());
   }
+
+  static createPattern(imageUrl) {
+    return fetch(`${url}/patterns`, {
+      method: "post",
+      headers: getHeaders(),
+      body: JSON.stringify({ url: imageUrl })
+    }).then(res => res.json());
+  }
 }
 
 export default AuthAdapter;

@@ -21,7 +21,7 @@ class App extends Component {
         if (res.errors) {
           localStorage.clear();
         } else {
-          this.props.setLoggedIn();
+          this.props.setLoggedIn(res);
           this.setState({
             authCompleted: true
           });

@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, SET_LOGGED_IN } from "./types";
+import { SET_CURRENT_USER, SET_LOGGED_IN, SET_CURRENT_PATTERN } from "./types";
 import AuthAdapter from "../api";
 
 export function createUser(user, history) {
@@ -25,6 +25,14 @@ export function loginUser(user, history) {
   };
 }
 
-export function setLoggedIn() {
-  return { type: SET_LOGGED_IN };
+export function setLoggedIn(res) {
+  return { type: SET_LOGGED_IN, user: res };
+}
+
+export function createPattern(imageUrl) {
+  return dispatch => {
+    AuthAdapter.createPattern(imageUrl).then(json => {
+      dispatch({ type: SET_CURRENT_PATTERN, imageUrl });
+    });
+  };
 }

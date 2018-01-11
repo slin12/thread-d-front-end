@@ -37,19 +37,18 @@ export default function sketch(p) {
   //after button is clicked, do all the heavy lifting
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     if (props.saved) {
-      console.log("made it!");
       p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
         let blob = dataURItoBlob(frame.imageData);
         let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
         ReactS3.upload(file, config)
           .then(data => {
-            //ADD FETCH REQUEST HERE TO SEND URL TO RAILS
+            props.createPattern(data.location);
             console.log(data);
           })
           .catch(err => console.error(err));
         p.remove();
-        props.history.push("/dashboard");
+        // props.history.push("/dashboard");
       });
     }
   };
