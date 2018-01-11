@@ -2,7 +2,8 @@ import {
   SET_CURRENT_USER,
   SET_LOGGED_IN,
   SET_CURRENT_PATTERN,
-  SET_PATTERN_NAME
+  SET_PATTERN_NAME,
+  SET_COLOR
 } from "./types";
 import AuthAdapter from "../api";
 
@@ -44,4 +45,8 @@ export function createPattern(imageUrl) {
 
 export function setPatternName(name) {
   return { type: SET_PATTERN_NAME, name };
+}
+
+export function setColor(colorArray) {
+  return { type: SET_COLOR, colors: colorArray };
 }

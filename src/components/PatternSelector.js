@@ -13,18 +13,18 @@ class PatternSelector extends React.Component {
   colors = () => {
     let colors = [
       [
-        "rgba(150, 187, 187, 1)",
-        "rgba(97, 137, 133, 1)",
-        "rgba(65, 69, 53, 1)",
-        "rgba(242, 227, 188, 1)",
-        "rgba(193, 152, 117, 1)"
+        "rgb(150, 187, 187)",
+        "rgb(97, 137, 133)",
+        "rgb(65, 69, 53)",
+        "rgb(242, 227, 188)",
+        "rgb(193, 152, 117)"
       ],
       [
-        "rgba(27, 6, 94, 1)",
-        "rgba(255, 71, 218, 1)",
-        "rgba(255, 135, 171, 1)",
-        "rgba(252, 200, 194, 1)",
-        "rgba(245, 236, 205, 1)"
+        "rgb(27, 6, 94)",
+        "rgb(255, 71, 218)",
+        "rgb(255, 135, 171)",
+        "rgb(252, 200, 194)",
+        "rgb(245, 236, 205)"
       ],
       [
         "rgb(8, 96, 95)",
@@ -49,8 +49,8 @@ class PatternSelector extends React.Component {
       ]
     ];
 
-    return colors.map(c => {
-      return <PatternColorSelector colors={c} />;
+    return colors.map((c, idx) => {
+      return <PatternColorSelector colors={c} key={idx} />;
     });
   };
 
