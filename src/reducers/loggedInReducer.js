@@ -4,6 +4,8 @@ export default (state = false, action) => {
       return true;
     case "SET_LOGGED_IN":
       return true;
+    case "LOGOUT":
+      return false;
     default:
       return state;
   }

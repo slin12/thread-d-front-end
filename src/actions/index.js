@@ -3,7 +3,8 @@ import {
   SET_LOGGED_IN,
   SET_CURRENT_PATTERN,
   SET_PATTERN_NAME,
-  SET_COLOR
+  SET_COLOR,
+  LOGOUT
 } from "./types";
 import AuthAdapter from "../api";
 
@@ -49,4 +50,10 @@ export function setPatternName(name) {
 
 export function setColor(colorArray) {
   return { type: SET_COLOR, colors: colorArray };
+}
+
+export function handleLogout(history) {
+  localStorage.clear();
+  history.push("/");
+  return { type: LOGOUT };
 }

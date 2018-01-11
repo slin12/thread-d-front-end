@@ -29,10 +29,10 @@ body {
   font-family: "Muli";
   font-size: 1.25em;
   font-weight: 300;
-  border-radius: 5px;
   transition: 0.5s all;
 }
 
 .landing-page-b:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(235, 81, 96);
+  color: rgb(50, 50, 50);
 }

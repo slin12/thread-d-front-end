@@ -6,6 +6,8 @@ export default (state = {}, action) => {
     case "SET_LOGGED_IN":
       console.log("set logged in in user reducer", action.user);
       return action.user;
+    case "LOGOUT":
+      return {};
     default:
       return state;
   }

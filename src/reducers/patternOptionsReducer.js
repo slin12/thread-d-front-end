@@ -14,6 +14,8 @@ export default (state = defaultState, action) => {
         colors: action.colors,
         selectedColor: action.colors[0]
       };
+    case "LOGOUT":
+      return defaultState;
     default:
       return state;
   }

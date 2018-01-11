@@ -90,7 +90,6 @@
   border-top: 1px solid rgb(179, 172, 167);
   font-size: 0.875em;
   font-family: "Muli", sans-serif;
-  font-size: 0.875em;
   color: #b3aca7;
   transition: all 0.3s ease-in-out;
 }
@@ -99,4 +98,24 @@
   color: rgb(50, 50, 50);
   background: #b3aca7;
   cursor: pointer;
+}
+
+#log-out {
+  margin-top: 2%;
+  margin-right: 2%;
+  float: right;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(235, 81, 96);
+  color: rgb(235, 81, 96);
+  height: 35px;
+  width: 150px;
+  font-weight: 300;
+  transition: 0.5s all;
+  font-size: 0.875em;
+  font-family: "Muli", sans-serif;
+}
+
+#log-out:hover {
+  background-color: rgba(235, 81, 96, 1);
+  color: rgb(50, 50, 50);
 }
