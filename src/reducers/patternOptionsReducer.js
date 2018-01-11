@@ -11,7 +11,7 @@ export default (state = defaultState, action) => {
     case "SET_COLOR":
       return {
         ...state,
-        color: action.colors,
+        colors: action.colors,
         selectedColor: action.colors[0]
       };
     default:

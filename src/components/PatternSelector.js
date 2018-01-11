@@ -79,6 +79,7 @@ class PatternSelector extends React.Component {
           </div>
           <h4>Choose A Color Scheme</h4>
           <div id="colors-container">{this.colors()}</div>
+          <button id="start-interaction">START</button>
         </div>
       </div>
     );
@@ -86,7 +87,10 @@ class PatternSelector extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { selectedPattern: state.patternOptions.name };
+  return {
+    selectedPattern: state.patternOptions.name,
+    selectedColor: state.patternOptions.selectedColor
+  };
 };
 
 export default connect(mapStateToProps, actions)(PatternSelector);

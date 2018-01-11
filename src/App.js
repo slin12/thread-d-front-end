@@ -35,8 +35,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("props in app", this.props);
-    console.log("state in app", this.state);
     if (this.state.authCompleted === true) {
       return (
         <div className="App">

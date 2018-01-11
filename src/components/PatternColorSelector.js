@@ -10,19 +10,33 @@ class PatternColorSelector extends React.Component {
   colorboxes = () => {
     return this.props.colors.map((c, idx) => {
       return (
-        <div className="individual-color-box" style={{ backgroundColor: c }} />
+        <div
+          className="individual-color-box"
+          style={{ backgroundColor: c }}
+          key={`color-${c}`}
+        />
       );
     });
   };
 
   render() {
-    console.log("props in color selector", this.props);
     return (
-      <div className="color-box" onClick={this.handleColorSelection}>
+      <div
+        className={
+          this.props.selectedColor === this.props.colors[0]
+            ? "color-box color-box-selected"
+            : "color-box"
+        }
+        onClick={this.handleColorSelection}
+      >
         {this.colorboxes()}
       </div>
     );
   }
 }
 
-export default connect(null, actions)(PatternColorSelector);
+const mapStateToProps = state => {
+  return { selectedColor: state.patternOptions.selectedColor };
+};
+
+export default connect(mapStateToProps, actions)(PatternColorSelector);
