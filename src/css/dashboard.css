@@ -60,3 +60,19 @@
 .interaction-selected {
   opacity: 1;
 }
+
+#colors-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.color-box {
+  width: 50px;
+  height: 100px;
+  opacity: 0.5;
+}
+
+.individual-color-box {
+  width: 50px;
+  height: 20px;
+}
