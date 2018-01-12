@@ -34,9 +34,9 @@ class Render extends React.Component {
     });
     console.log("about to load");
     const texture = new THREE.TextureLoader();
-    // texture.crossOrigin = "Anonymous";
-    // this.props.textureUrl
-    texture.load("scroll-icon.jpg", texture => {
+    texture.crossOrigin = "Anonymous";
+
+    texture.load(this.props.textureUrl, texture => {
       console.log("loaded!");
       console.log(texture);
       this.setState({ texture });

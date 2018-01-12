@@ -1,21 +1,5 @@
-import ReactS3 from "react-s3";
 import uuid from "uuid";
-
-const config = {
-  bucketName: "thread-d",
-  region: "us-east-1",
-  accessKeyId: process.env.REACT_APP_AWS_ACCESS,
-  secretAccessKey: process.env.REACT_APP_AWS_SECRET
-};
-
-const dataURItoBlob = dataURI => {
-  const binary = atob(dataURI.split(",")[1]);
-  let array = [];
-  for (var i = 0; i < binary.length; i++) {
-    array.push(binary.charCodeAt(i));
-  }
-  return new Blob([new Uint8Array(array)], { type: "image/jpeg" });
-};
+import AWS from "../api/aws.js";
 
 let circles = [];
 let colors = [
@@ -35,26 +19,24 @@ export default function sketch(p) {
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     colors = props.colors;
-    console.log("in the redraw for props!");
-    console.log("colors are", colors);
     this.circles();
     //when the save button is clicked
     if (props.saved) {
       p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
-        let blob = dataURItoBlob(frame.imageData);
+        let blob = AWS.dataURItoBlob(frame.imageData);
         let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
-        ReactS3.upload(file, config)
+        AWS.sendFile(file)
           .then(data => {
             props.createPattern(data.location, props.history);
-            console.log(data);
-            // props.history.push("/render");
           })
           .catch(err => console.error(err));
         p.remove();
+        circles = [];
       });
     } else if (props.backClicked) {
       p.remove();
+      circles = [];
       props.history.push("/dashboard");
     }
   };
