@@ -9,12 +9,19 @@ import * as actions from "../actions";
 
 class InteractiveSketch extends React.Component {
   state = {
-    saved: false
+    saved: false,
+    backClicked: false
   };
 
   handleClick = () => {
     this.setState({
       saved: true
+    });
+  };
+
+  handleBackClick = () => {
+    this.setState({
+      backClicked: true
     });
   };
 
@@ -28,23 +35,30 @@ class InteractiveSketch extends React.Component {
           saved={this.state.saved}
           history={this.props.history}
           createPattern={this.props.createPattern}
+          backClicked={this.state.backClicked}
           colors={this.props.colors}
         />
-        <button
-          onClick={this.handleClick}
-          id="interactive-save"
-          style={{
-            position: "absolute",
-            left: window.innerWidth - 200,
-            top: window.innerHeight - 80
-          }}
-        >
-          save
-        </button>
+        <div id="interactive-bottom-bar">
+          <button onClick={this.handleBackClick} id="interactive-back">
+            BACK
+          </button>
+          <span>
+            Hit any button to pause animation. Scroll to change size of circles.
+          </span>
+          <button onClick={this.handleClick} id="interactive-save">
+            SAVE
+          </button>
+        </div>
       </div>
     );
   }
 }
+
+// style={{
+//   position: "absolute",
+//   left: window.innerWidth - 200,
+//   top: window.innerHeight - 80
+// }}
 
 const mapStateToProps = state => {
   return {

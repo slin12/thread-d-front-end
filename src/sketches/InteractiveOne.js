@@ -30,7 +30,7 @@ let loop = true;
 export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
-    p.background(100);
+    p.background(10);
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
@@ -53,6 +53,9 @@ export default function sketch(p) {
           .catch(err => console.error(err));
         p.remove();
       });
+    } else if (props.backClicked) {
+      p.remove();
+      props.history.push("/dashboard");
     }
   };
 

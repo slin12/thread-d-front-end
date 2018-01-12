@@ -45,7 +45,9 @@ class Render extends React.Component {
 
   _onCameraMounted = cameraObj => {
     setTimeout(() => {
-      this.controls = new OrbitControls(cameraObj);
+      let controls = new OrbitControls(cameraObj);
+      controls.enablePan = false;
+      this.controls = controls;
       console.log("camera mounted!", this.controls);
     }, 200);
   };
