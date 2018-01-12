@@ -72,14 +72,17 @@ class Render extends React.Component {
             mainCamera="camera"
             width={width}
             height={height}
-            clearColor={0xf5f9ff}
+            clearColor={0x323232}
           >
             <scene>
               <perspectiveCamera
                 ref={this._onCameraMounted}
                 name="camera"
                 {...cameraProps}
-              />
+              >
+                <pointLight position={new THREE.Vector3(100, 0, 150)} />
+              </perspectiveCamera>
+
               <mesh
                 position={this.meshPosition}
                 rotation={this.state.cubeRotation}
@@ -91,7 +94,6 @@ class Render extends React.Component {
                 />
                 <meshLambertMaterial map={this.state.texture} />
               </mesh>
-              <pointLight position={new THREE.Vector3(50, 150, 150)} />
             </scene>
           </React3>
         </div>
