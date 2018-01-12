@@ -69,7 +69,7 @@ class PatternSelector extends React.Component {
           <div id="create-pattern-interactions">
             <div>
               <img
-                src="https://s3.amazonaws.com/thread-d/assets/scroll-icon.jpg"
+                src="scroll-icon.jpg"
                 className={
                   this.props.selectedPattern === "scroll"
                     ? "interactive-img interaction-selected"

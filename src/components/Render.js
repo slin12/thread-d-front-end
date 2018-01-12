@@ -6,24 +6,20 @@ import React3 from "react-three-renderer";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
+const OrbitControls = require("three-orbit-controls")(THREE);
+
 class Render extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.meshPosition = new THREE.Vector3(0, 0, -6);
-    this.cameraPosition = new THREE.Vector3(0, 0, 6);
+    this.meshPosition = new THREE.Vector3(0, 0, 0);
 
     this.state = {
       cubeRotation: new THREE.Euler(),
-      geometry: { vertices: [], faces: [] },
+      geometry: { vertices: [], faces: [], faceVertexUvs: [] },
       texture: { uuid: "" }
     };
 
     this._onAnimate = () => {
-      // we will get this callback every frame
-
-      // pretend cubeRotation is immutable.
-      // this helps with updates and pure rendering.
-      // React will be sure that the rotation has now updated.
       this.setState({
         cubeRotation: new THREE.Euler(0, this.state.cubeRotation.y + 0.01, 0)
       });
@@ -35,50 +31,58 @@ class Render extends React.Component {
     loader.load("new-origin.json", geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
-      // mesh = new THREE.Mesh(geometry, material);
-      // mesh.position.z = -10;
-      // mesh.position.y = -10;
-      // mesh.position.x = 0;
-      // scene.add(mesh);
     });
     console.log("about to load");
     const texture = new THREE.TextureLoader();
-    texture.crossOrigin = "Anonymous";
-    texture.load(this.props.textureUrl, texture => {
+    // texture.crossOrigin = "Anonymous";
+    // this.props.textureUrl
+    texture.load("scroll-icon.jpg", texture => {
       console.log("loaded!");
       console.log(texture);
       this.setState({ texture });
     });
   }
 
+  _onCameraMounted = cameraObj => {
+    setTimeout(() => {
+      this.controls = new OrbitControls(cameraObj);
+      console.log("camera mounted!", this.controls);
+    }, 200);
+  };
+
   render() {
-    console.log(this.props);
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
+    console.log("controls", this.controls);
     if (
       this.state.geometry.vertices.length > 0 &&
       this.state.texture.uuid.length > 0
     ) {
+      const cameraProps = {
+        fov: 75,
+        aspect: width / height,
+        near: 0.1,
+        far: 1000,
+        position: new THREE.Vector3(0, 0, 7),
+        lookAt: new THREE.Vector3(0, 0, -6)
+      };
       return (
         <div id="render">
           <React3
             mainCamera="camera"
             width={width}
             height={height}
-            onAnimate={this._onAnimate}
+            clearColor={0xf5f9ff}
           >
             <scene>
               <perspectiveCamera
+                ref={this._onCameraMounted}
                 name="camera"
-                fov={45}
-                aspect={width / height}
-                near={0.1}
-                far={10000}
-                position={this.cameraPosition}
+                {...cameraProps}
               />
               <mesh
-                rotation={this.state.cubeRotation}
                 position={this.meshPosition}
+                rotation={this.state.cubeRotation}
               >
                 <geometry
                   vertices={this.state.geometry.vertices}
@@ -97,6 +101,8 @@ class Render extends React.Component {
     }
   }
 }
+
+//mesh
 
 const mapStateToProps = state => {
   return { textureUrl: state.currentPattern };
