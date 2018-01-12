@@ -46,12 +46,12 @@ export default function sketch(p) {
         let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
         ReactS3.upload(file, config)
           .then(data => {
-            props.createPattern(data.location);
+            props.createPattern(data.location, props.history);
             console.log(data);
+            // props.history.push("/render");
           })
           .catch(err => console.error(err));
         p.remove();
-        // props.history.push("/dashboard");
       });
     }
   };

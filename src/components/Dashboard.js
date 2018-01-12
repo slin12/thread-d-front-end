@@ -2,14 +2,14 @@ import React from "react";
 import "../css/dashboard.css";
 import PatternSelector from "./PatternSelector";
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import * as actions from "../actions";
 
 class Dashboard extends React.Component {
   render() {
-    return (
+    return this.props.loggedIn ? (
       <div>
         <button
           id="log-out"
@@ -31,12 +31,14 @@ class Dashboard extends React.Component {
           </div>
         </div>
       </div>
+    ) : (
+      <Redirect to="/" />
     );
   }
 }
 
 const mapStateToProps = state => {
-  return { user: state.user.name };
+  return { user: state.user.name, loggedIn: state.loggedIn };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(Dashboard));

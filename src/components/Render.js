@@ -3,17 +3,19 @@ import "../css/render.css";
 import * as THREE from "three";
 import React3 from "react-three-renderer";
 
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
 class Render extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    // construct the position vector here, because if we use 'new' within render,
-    // React will think that things have changed when they have not.
+    this.meshPosition = new THREE.Vector3(0, 0, -6);
     this.cameraPosition = new THREE.Vector3(0, 0, 6);
 
     this.state = {
       cubeRotation: new THREE.Euler(),
-      geometry: { vertices: [], faces: [] }
+      geometry: { vertices: [], faces: [] },
+      texture: { uuid: "" }
     };
 
     this._onAnimate = () => {
@@ -30,7 +32,6 @@ class Render extends React.Component {
 
   componentDidMount() {
     const loader = new THREE.JSONLoader();
-    console.log("loader", loader);
     loader.load("new-origin.json", geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
@@ -40,41 +41,56 @@ class Render extends React.Component {
       // mesh.position.x = 0;
       // scene.add(mesh);
     });
+    console.log("about to load");
+    const texture = new THREE.TextureLoader();
+    texture.crossOrigin = "Anonymous";
+    texture.load(this.props.textureUrl, texture => {
+      console.log("loaded!");
+      console.log(texture);
+      this.setState({ texture });
+    });
   }
 
   render() {
+    console.log(this.props);
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
-    console.log(this.state.geometry);
-    if (this.state.geometry.vertices.length > 0) {
+    if (
+      this.state.geometry.vertices.length > 0 &&
+      this.state.texture.uuid.length > 0
+    ) {
       return (
-        <React3
-          mainCamera="camera"
-          width={width}
-          height={height}
-          onAnimate={this._onAnimate}
-        >
-          <scene>
-            <perspectiveCamera
-              name="camera"
-              fov={45}
-              aspect={width / height}
-              near={0.1}
-              far={10000}
-              position={this.cameraPosition}
-            />
-            <mesh
-              rotation={this.state.cubeRotation}
-              position={new THREE.Vector3(0, 0, -7)}
-            >
-              <geometry
-                vertices={this.state.geometry.vertices}
-                faces={this.state.geometry.faces}
+        <div id="render">
+          <React3
+            mainCamera="camera"
+            width={width}
+            height={height}
+            onAnimate={this._onAnimate}
+          >
+            <scene>
+              <perspectiveCamera
+                name="camera"
+                fov={45}
+                aspect={width / height}
+                near={0.1}
+                far={10000}
+                position={this.cameraPosition}
               />
-              <meshNormalMaterial />
-            </mesh>
-          </scene>
-        </React3>
+              <mesh
+                rotation={this.state.cubeRotation}
+                position={this.meshPosition}
+              >
+                <geometry
+                  vertices={this.state.geometry.vertices}
+                  faces={this.state.geometry.faces}
+                  faceVertexUvs={this.state.geometry.faceVertexUvs}
+                />
+                <meshLambertMaterial map={this.state.texture} />
+              </mesh>
+              <pointLight position={new THREE.Vector3(50, 150, 150)} />
+            </scene>
+          </React3>
+        </div>
       );
     } else {
       return <h1>Loading...</h1>;
@@ -82,4 +98,8 @@ class Render extends React.Component {
   }
 }
 
-export default Render;
+const mapStateToProps = state => {
+  return { textureUrl: state.currentPattern };
+};
+
+export default withRouter(connect(mapStateToProps)(Render));

@@ -37,10 +37,11 @@ export function setLoggedIn(res) {
   return { type: SET_LOGGED_IN, user: res };
 }
 
-export function createPattern(imageUrl) {
+export function createPattern(imageUrl, history) {
   return dispatch => {
     AuthAdapter.createPattern(imageUrl).then(json => {
       dispatch({ type: SET_CURRENT_PATTERN, imageUrl });
+      history.push("/render");
     });
   };
 }
