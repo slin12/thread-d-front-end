@@ -43,10 +43,19 @@ class InteractiveSketch extends React.Component {
           <button onClick={this.handleBackClick} id="interactive-back">
             BACK
           </button>
-          <span>
-            Hit any button on the keyboard to pause animation. Scroll to change
-            size of circles.
-          </span>
+
+          {this.props.sketchName === "scroll" ? (
+            <span>
+              Hit any button on the keyboard to pause animation. Scroll to
+              change size of circles.
+            </span>
+          ) : (
+            <span>
+              Hit any button on the keyboard to pause animation. Scroll to
+              change draw radius, use up/down arrows to change size.
+            </span>
+          )}
+
           <button onClick={this.handleClick} id="interactive-save">
             SAVE
           </button>
