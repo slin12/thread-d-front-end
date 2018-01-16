@@ -43,16 +43,19 @@ class Render extends React.Component {
       console.log("loaded!");
       console.log(texture);
       this.setState({ texture });
+      const controls = new OrbitControls(this.refs.camera);
+      this.controls = controls;
     });
   }
 
-  _onCameraMounted = cameraObj => {
-    setTimeout(() => {
-      let controls = new OrbitControls(cameraObj);
-      controls.enablePan = false;
-      this.controls = controls;
-      console.log("camera mounted!", this.controls);
-    }, 200);
+  componentWillUnmount() {
+    this.controls.dispose();
+    delete this.controls;
+    console.log("deleting controls", this.controls);
+  }
+
+  handleBackClick = e => {
+    this.props.history.push("/dashboard");
   };
 
   render() {
@@ -80,11 +83,7 @@ class Render extends React.Component {
             clearColor={0x323232}
           >
             <scene>
-              <perspectiveCamera
-                ref={this._onCameraMounted}
-                name="camera"
-                {...cameraProps}
-              >
+              <perspectiveCamera ref="camera" name="camera" {...cameraProps}>
                 <pointLight position={new THREE.Vector3(100, 0, 150)} />
               </perspectiveCamera>
 
@@ -101,6 +100,15 @@ class Render extends React.Component {
               </mesh>
             </scene>
           </React3>
+          <div id="render-bottom-bar">
+            <button onClick={this.handleBackClick} id="render-back">
+              BACK
+            </button>
+            <span>
+              Click and Drag to move around model. Scroll to zoom in and out.
+            </span>
+            <button style={{ visibility: "hidden" }} />
+          </div>
         </div>
       );
     } else {
