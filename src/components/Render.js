@@ -31,9 +31,13 @@ class Render extends React.Component {
     //   this.props.history.push("/dashboard");
     // }
     const loader = new THREE.JSONLoader();
-    loader.load("/new-origin.json", geometry => {
+    loader.load("/male-tee.json", geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
+      setTimeout(() => {
+        const controls = new OrbitControls(this.refs.camera);
+        this.controls = controls;
+      }, 300);
     });
     console.log("about to load");
     const texture = new THREE.TextureLoader();
@@ -47,10 +51,6 @@ class Render extends React.Component {
         console.log("loaded!");
         console.log(texture);
         this.setState({ texture });
-        setTimeout(() => {
-          const controls = new OrbitControls(this.refs.camera);
-          this.controls = controls;
-        }, 150);
       }
     );
   }
@@ -110,9 +110,16 @@ class Render extends React.Component {
             </scene>
           </React3>
           <div id="render-bottom-bar">
-            <button onClick={this.handleBackClick} id="render-back">
-              BACK
-            </button>
+            {this.props.loggedIn ? (
+              <button onClick={this.handleBackClick} id="render-back">
+                BACK
+              </button>
+            ) : (
+              <button onClick={this.handleBackClick} id="render-back">
+                SIGN UP
+              </button>
+            )}
+
             <span>
               Click and Drag to move around model. Scroll to zoom in and out.
             </span>
@@ -133,7 +140,7 @@ class Render extends React.Component {
 //mesh
 
 const mapStateToProps = state => {
-  return { textureUrl: state.currentPattern };
+  return { textureUrl: state.currentPattern, loggedIn: state.loggedIn };
 };
 
 export default withRouter(connect(mapStateToProps)(Render));
