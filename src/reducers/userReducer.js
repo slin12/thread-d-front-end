@@ -8,6 +8,8 @@ export default (state = {}, action) => {
       return action.user;
     case "LOGOUT":
       return {};
+    case "UPDATE_USER_PATTERNS":
+      return { ...state, patterns: action.userPatterns };
     default:
       return state;
   }

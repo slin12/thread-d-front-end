@@ -4,6 +4,7 @@ import {
   SET_CURRENT_PATTERN,
   SET_PATTERN_NAME,
   SET_COLOR,
+  UPDATE_USER_PATTERNS,
   LOGOUT
 } from "./types";
 import AuthAdapter from "../api";
@@ -40,10 +41,21 @@ export function setLoggedIn(res) {
 export function createPattern(imageUrl, history) {
   return dispatch => {
     AuthAdapter.createPattern(imageUrl).then(json => {
-      dispatch({ type: SET_CURRENT_PATTERN, imageUrl });
+      dispatch({
+        type: SET_CURRENT_PATTERN,
+        imageUrl
+      });
+      dispatch({
+        type: UPDATE_USER_PATTERNS,
+        userPatterns: json.user_patterns
+      });
       history.push("/render");
     });
   };
+}
+
+export function selectPattern(imageUrl) {
+  return { type: SET_CURRENT_PATTERN, imageUrl };
 }
 
 export function setPatternName(name) {

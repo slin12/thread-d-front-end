@@ -119,3 +119,39 @@
   background-color: rgba(235, 81, 96, 1);
   color: rgb(50, 50, 50);
 }
+
+#your-patterns {
+  border: 1px solid rgb(179, 172, 167);
+}
+
+.pattern-image {
+  height: 130px;
+  width: 130px;
+  overflow: hidden;
+}
+
+#your-patterns-container-flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+#your-patterns img {
+  max-width: auto;
+  height: 100%;
+  opacity: 0.5;
+}
+
+#your-patterns img.selected {
+  opacity: 1;
+}
+
+#your-patterns span {
+  font-size: 1.5em;
+  margin: 0 2%;
+}
+
+#your-patterns span:hover {
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/dashboard.css";
 import PatternSelector from "./PatternSelector";
+import PatternContainer from "./PatternContainer";
 
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -25,9 +26,7 @@ class Dashboard extends React.Component {
           <h4>What would you like to do?</h4>
           <div id="choices-dashboard-container">
             <PatternSelector />
-            <div id="see-designs-container" className="choices-child">
-              <h3>See Your Designs</h3>
-            </div>
+            <PatternContainer />
           </div>
         </div>
       </div>

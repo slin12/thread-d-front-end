@@ -44,7 +44,7 @@ export default function sketch(p) {
     //title
     p.noStroke();
     p.fill(235, 81, 96);
-    p.textFont("Varela Round");
+    p.textFont("Libre Franklin");
     p.textSize(75);
     p.textStyle(p.ITALIC);
     p.textAlign(p.CENTER);
