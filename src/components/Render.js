@@ -114,7 +114,11 @@ class Render extends React.Component {
         </div>
       );
     } else {
-      return <h1>Loading...</h1>;
+      return (
+        <div id="loading" style={{ height: window.innerHeight }}>
+          <h1>Loading...</h1>
+        </div>
+      );
     }
   }
 }

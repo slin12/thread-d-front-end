@@ -39,3 +39,19 @@
   color: rgb(235, 81, 96);
   cursor: pointer;
 }
+
+#loading {
+  top: 0;
+  width: 100%;
+  background-color: rgb(50, 50, 50);
+  overflow: hidden;
+  text-align: center;
+}
+
+#loading h1 {
+  font-size: 4.5em;
+  font-family: "Libre Franklin";
+  font-style: italic;
+  color: rgb(235, 81, 96);
+  margin-top: 20%;
+}
