@@ -52,8 +52,13 @@
   justify-content: center;
 }
 
+#create-pattern-interactions {
+  display: flex;
+  justify-content: space-around;
+}
+
 .interactive-img {
-  max-width: 20%;
+  max-width: 50%;
   height: auto;
   opacity: 0.5;
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import P5Wrapper from "react-p5-wrapper";
 import "../css/interactive.css";
-import sketch from "../sketches/InteractiveOne";
+import scroll from "../sketches/Scroll";
+import square from "../sketches/Square";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -31,7 +32,7 @@ class InteractiveSketch extends React.Component {
     ) : (
       <div id="interactive-sketch">
         <P5Wrapper
-          sketch={sketch}
+          sketch={this.props.sketchName === "scroll" ? scroll : square}
           saved={this.state.saved}
           history={this.props.history}
           createPattern={this.props.createPattern}
@@ -63,7 +64,8 @@ class InteractiveSketch extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    colors: state.patternOptions.colors
+    colors: state.patternOptions.colors,
+    sketchName: state.patternOptions.name
   };
 };
 

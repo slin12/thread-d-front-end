@@ -81,6 +81,20 @@ class PatternSelector extends React.Component {
               <br />
               <small>Scroll</small>
             </div>
+            <div>
+              <img
+                src="square-icon.jpg"
+                className={
+                  this.props.selectedPattern === "square"
+                    ? "interactive-img interaction-selected"
+                    : "interactive-img"
+                }
+                onClick={() => this.props.setPatternName("square")}
+                alt="scroll-interaction"
+              />
+              <br />
+              <small>Square</small>
+            </div>
           </div>
           <h4>Choose A Color Scheme</h4>
           <div id="colors-container">{this.colors()}</div>
