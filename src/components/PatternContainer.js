@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 
 class PatternContainer extends React.Component {
@@ -25,6 +26,11 @@ class PatternContainer extends React.Component {
     this.setState({
       imageArrayIdx: newState
     });
+  };
+
+  handleStart = e => {
+    e.preventDefault();
+    this.props.history.push("/render");
   };
 
   patterns = () => {
@@ -62,10 +68,23 @@ class PatternContainer extends React.Component {
             <span onClick={this.handleFrontClick}> ▻</span>
           ) : null}
         </div>
+        <button
+          style={
+            this.props.currentPattern.length > 0 ? null : { display: "none" }
+          }
+          id="start-render"
+          onClick={this.handleStart}
+        >
+          START
+        </button>
       </div>
     );
   }
 }
+
+// CHOOSE A MODEL
+// <h4>Choose A Model</h4>
+// <img id="tshirt-img" src="tshirt.png" alt="tshirt model" />
 
 const chunkArray = array => {
   let copyArray = [...array];
@@ -81,4 +100,4 @@ const mapStateToProps = state => {
   return { patterns: chunkedArray, currentPattern: state.currentPattern };
 };
 
-export default connect(mapStateToProps, actions)(PatternContainer);
+export default withRouter(connect(mapStateToProps, actions)(PatternContainer));
