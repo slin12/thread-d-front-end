@@ -55,7 +55,7 @@ class App extends Component {
             <Route path="/welcome" component={LandingPage} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/interact" component={InteractiveSketch} />
-            <Route path="/render" component={Render} />
+            <Route path="/render/:url" component={Render} />
           </Switch>
         </div>
       );

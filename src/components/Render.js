@@ -27,9 +27,9 @@ class Render extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.textureUrl.length < 1) {
-      this.props.history.push("/dashboard");
-    }
+    // if (this.props.textureUrl.length < 1) {
+    //   this.props.history.push("/dashboard");
+    // }
     const loader = new THREE.JSONLoader();
     loader.load("new-origin.json", geometry => {
       geometry.center();
@@ -39,13 +39,18 @@ class Render extends React.Component {
     const texture = new THREE.TextureLoader();
     texture.crossOrigin = "Anonymous";
 
-    texture.load(this.props.textureUrl, texture => {
-      console.log("loaded!");
-      console.log(texture);
-      this.setState({ texture });
-      const controls = new OrbitControls(this.refs.camera);
-      this.controls = controls;
-    });
+    texture.load(
+      `https://thread-d.s3.amazonaws.com/undefined/${
+        this.props.match.params.url
+      }.jpg`,
+      texture => {
+        console.log("loaded!");
+        console.log(texture);
+        this.setState({ texture });
+        // const controls = new OrbitControls(this.refs.camera);
+        // this.controls = controls;
+      }
+    );
   }
 
   componentWillUnmount() {
