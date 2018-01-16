@@ -27,6 +27,9 @@ class Render extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.textureUrl.length < 1) {
+      this.props.history.push("/dashboard");
+    }
     const loader = new THREE.JSONLoader();
     loader.load("new-origin.json", geometry => {
       geometry.center();
