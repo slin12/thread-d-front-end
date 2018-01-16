@@ -30,7 +30,12 @@ class PatternContainer extends React.Component {
 
   handleStart = e => {
     e.preventDefault();
-    this.props.history.push("/render");
+    let slug = this.props.currentPattern.replace(
+      "https://thread-d.s3.amazonaws.com/undefined/",
+      ""
+    );
+    slug = slug.replace(".jpg", "");
+    this.props.history.push(`/render/${slug}`);
   };
 
   patterns = () => {

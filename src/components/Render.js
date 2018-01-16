@@ -31,7 +31,7 @@ class Render extends React.Component {
     //   this.props.history.push("/dashboard");
     // }
     const loader = new THREE.JSONLoader();
-    loader.load("new-origin.json", geometry => {
+    loader.load("/new-origin.json", geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
     });
@@ -47,8 +47,10 @@ class Render extends React.Component {
         console.log("loaded!");
         console.log(texture);
         this.setState({ texture });
-        // const controls = new OrbitControls(this.refs.camera);
-        // this.controls = controls;
+        setTimeout(() => {
+          const controls = new OrbitControls(this.refs.camera);
+          this.controls = controls;
+        }, 150);
       }
     );
   }
