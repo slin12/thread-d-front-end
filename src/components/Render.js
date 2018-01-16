@@ -49,9 +49,12 @@ class Render extends React.Component {
   }
 
   componentWillUnmount() {
-    this.controls.dispose();
-    delete this.controls;
-    console.log("deleting controls", this.controls);
+    if (this.controls) {
+      console.log("in component will unmount", this.controls);
+      this.controls.dispose();
+      delete this.controls;
+      console.log("deleting controls", this.controls);
+    }
   }
 
   handleBackClick = e => {
@@ -61,7 +64,6 @@ class Render extends React.Component {
   render() {
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
-    console.log("controls", this.controls);
     if (
       this.state.geometry.vertices.length > 0 &&
       this.state.texture.uuid.length > 0
