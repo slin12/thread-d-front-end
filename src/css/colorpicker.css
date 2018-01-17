@@ -12,16 +12,30 @@
 
 #custom-color-picker-container {
   background-color: rgb(50, 50, 50);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #custom-color-picker-background h1 {
-  margin-top: 4%;
   font-family: 3.5em;
   color: rgb(235, 81, 96);
-  margin-bottom: 5%;
 }
 
-#custom-color-container {
-  background-color: white;
-  margin: 0 auto;
+#submit-custom-color {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgb(235, 81, 96);
+  color: rgb(235, 81, 96);
+  height: 35px;
+  width: 150px;
+  font-weight: 300;
+  transition: 0.5s all;
+  font-size: 0.875em;
+  font-family: "Muli", sans-serif;
+}
+
+#submit-custom-color:hover {
+  background-color: rgba(235, 81, 96, 1);
+  color: rgb(50, 50, 50);
 }

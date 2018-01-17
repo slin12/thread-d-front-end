@@ -12,45 +12,7 @@ class PatternSelector extends React.Component {
   };
 
   colors = () => {
-    let colors = [
-      [
-        "rgb(150, 187, 187)",
-        "rgb(97, 137, 133)",
-        "rgb(65, 69, 53)",
-        "rgb(242, 227, 188)",
-        "rgb(193, 152, 117)"
-      ],
-      [
-        "rgb(27, 6, 94)",
-        "rgb(255, 71, 218)",
-        "rgb(255, 135, 171)",
-        "rgb(252, 200, 194)",
-        "rgb(245, 236, 205)"
-      ],
-      [
-        "rgb(8, 96, 95)",
-        "rgb(23, 126, 137)",
-        "rgb(89, 131, 129)",
-        "rgb(142, 147, 109)",
-        "rgb(162, 173, 89)"
-      ],
-      [
-        "rgb(219, 213, 110)",
-        "rgb(136, 171, 117)",
-        "rgb(45, 147, 173)",
-        "rgb(125, 124, 132)",
-        "rgb(222, 143, 110)"
-      ],
-      [
-        "rgb(203, 212, 194)",
-        "rgb(219, 235, 192)",
-        "rgb(195, 178, 153)",
-        "rgb(129, 83, 85)",
-        "rgb(82, 50, 73)"
-      ]
-    ];
-
-    return colors.map((c, idx) => {
+    return this.props.colors.map((c, idx) => {
       return <PatternColorSelector colors={c} key={idx} />;
     });
   };
@@ -98,11 +60,13 @@ class PatternSelector extends React.Component {
           <h4>Choose A Color Scheme</h4>
           <div id="colors-container">
             {this.colors()}
-            <div style={{ width: "50px", height: "100px", margin: "2%" }}>
-              <h2 id="custom-color-button" onClick={this.props.toggleModal}>
-                +
-              </h2>
-            </div>
+            {this.props.colors.length < 6 ? (
+              <div style={{ width: "50px", height: "100px", margin: "2%" }}>
+                <h2 id="custom-color-button" onClick={this.props.toggleModal}>
+                  +
+                </h2>
+              </div>
+            ) : null}
           </div>
           <button
             style={
@@ -124,6 +88,7 @@ class PatternSelector extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    colors: state.colors,
     selectedPattern: state.patternOptions.name,
     selectedColor: state.patternOptions.selectedColor
   };

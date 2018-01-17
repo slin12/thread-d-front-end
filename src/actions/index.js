@@ -7,6 +7,7 @@ import {
   SET_MODEL,
   UPDATE_USER_PATTERNS,
   LOGOUT,
+  ADD_COLOR,
   TOGGLE_MODAL
 } from "./types";
 import AuthAdapter from "../api";
@@ -67,6 +68,10 @@ export function selectPattern(imageUrl) {
 
 export function setPatternName(name) {
   return { type: SET_PATTERN_NAME, name };
+}
+
+export function addColor(colorArray) {
+  return { type: ADD_COLOR, colors: colorArray };
 }
 
 export function setColor(colorArray) {

@@ -1,6 +1,9 @@
 import React from "react";
 import "../css/colorpicker.css";
 
+import { connect } from "react-redux";
+import * as actions from "../actions";
+
 import { SketchPicker } from "react-color";
 
 class CustomColorPicker extends React.Component {
@@ -26,6 +29,11 @@ class CustomColorPicker extends React.Component {
       mouseY: e.screenY,
       currentColor: idx
     });
+  };
+
+  handleColorSubmit = () => {
+    this.props.toggleModal();
+    this.props.addColor(this.state.colors);
   };
 
   handleClose = () => {
@@ -57,7 +65,8 @@ class CustomColorPicker extends React.Component {
           id="custom-color-picker-container"
           style={{
             width: window.innerWidth * 0.75,
-            height: window.innerHeight * 0.6
+            height: window.innerHeight * 0.6,
+            margin: "0 auto"
           }}
         >
           <h1>Create A Custom Color Scheme</h1>
@@ -65,7 +74,8 @@ class CustomColorPicker extends React.Component {
             id="custom-color-container"
             style={{
               width: window.innerWidth * 0.5,
-              height: window.innerHeight / 4
+              height: window.innerHeight / 4,
+              margin: "0 auto"
             }}
           >
             <div
@@ -131,11 +141,13 @@ class CustomColorPicker extends React.Component {
               </div>
             ) : null}
           </div>
-          <button>Submit</button>
+          <button id="submit-custom-color" onClick={this.handleColorSubmit}>
+            Submit
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default CustomColorPicker;
+export default connect(null, actions)(CustomColorPicker);

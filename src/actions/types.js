@@ -7,3 +7,5 @@ export const LOGOUT = "LOGOUT";
 export const UPDATE_USER_PATTERNS = "UPDATE_USER_PATTERNS";
 export const SET_MODEL = "SET_MODEL";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
+export const ADD_COLOR = "ADD_COLOR";
+
