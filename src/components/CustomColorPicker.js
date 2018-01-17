@@ -2,7 +2,6 @@ import React from "react";
 import "../css/colorpicker.css";
 
 import { SketchPicker } from "react-color";
-import reactCSS from "reactcss";
 
 class CustomColorPicker extends React.Component {
   state = {
@@ -42,17 +41,15 @@ class CustomColorPicker extends React.Component {
   };
 
   render() {
-    const styles = reactCSS({
-      default: {
-        cover: {
-          position: "fixed",
-          top: "0px",
-          right: "0px",
-          bottom: "0px",
-          left: "0px"
-        }
+    const styles = {
+      cover: {
+        position: "fixed",
+        top: "0px",
+        right: "0px",
+        bottom: "0px",
+        left: "0px"
       }
-    });
+    };
 
     return (
       <div id="custom-color-picker-background">
@@ -134,6 +131,7 @@ class CustomColorPicker extends React.Component {
               </div>
             ) : null}
           </div>
+          <button>Submit</button>
         </div>
       </div>
     );

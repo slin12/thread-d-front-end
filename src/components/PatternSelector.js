@@ -98,7 +98,7 @@ class PatternSelector extends React.Component {
           <h4>Choose A Color Scheme</h4>
           <div id="colors-container">
             {this.colors()}
-            <div>
+            <div style={{ width: "50px", height: "100px", margin: "2%" }}>
               <h2 id="custom-color-button" onClick={this.props.toggleModal}>
                 +
               </h2>

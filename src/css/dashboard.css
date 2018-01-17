@@ -76,12 +76,14 @@
   justify-content: space-evenly;
   margin-bottom: 3%;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .color-box {
   width: 50px;
   height: 100px;
   opacity: 0.5;
+  margin: 2%;
 }
 
 .color-box:hover {

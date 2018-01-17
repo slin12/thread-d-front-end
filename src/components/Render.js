@@ -30,9 +30,10 @@ class Render extends React.Component {
     // if (this.props.textureUrl.length < 1) {
     //   this.props.history.push("/dashboard");
     // }
+    const model = this.props.model.length > 0 ? this.props.model : "female";
 
     const loader = new THREE.JSONLoader();
-    loader.load(`/${this.props.model}-tee.json`, geometry => {
+    loader.load(`/${model}-tee.json`, geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
       setTimeout(() => {
