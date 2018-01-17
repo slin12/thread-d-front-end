@@ -30,8 +30,9 @@ class Render extends React.Component {
     // if (this.props.textureUrl.length < 1) {
     //   this.props.history.push("/dashboard");
     // }
+
     const loader = new THREE.JSONLoader();
-    loader.load("/male-tee.json", geometry => {
+    loader.load(`/${this.props.model}-tee.json`, geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
       setTimeout(() => {
@@ -140,7 +141,11 @@ class Render extends React.Component {
 //mesh
 
 const mapStateToProps = state => {
-  return { textureUrl: state.currentPattern, loggedIn: state.loggedIn };
+  return {
+    textureUrl: state.currentPattern,
+    loggedIn: state.loggedIn,
+    model: state.currentModel
+  };
 };
 
 export default withRouter(connect(mapStateToProps)(Render));

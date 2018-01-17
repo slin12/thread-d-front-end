@@ -4,6 +4,7 @@ import {
   SET_CURRENT_PATTERN,
   SET_PATTERN_NAME,
   SET_COLOR,
+  SET_MODEL,
   UPDATE_USER_PATTERNS,
   LOGOUT
 } from "./types";
@@ -69,6 +70,10 @@ export function setPatternName(name) {
 
 export function setColor(colorArray) {
   return { type: SET_COLOR, colors: colorArray };
+}
+
+export function setModel(model) {
+  return { type: SET_MODEL, model };
 }
 
 export function handleLogout(history) {

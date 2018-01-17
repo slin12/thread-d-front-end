@@ -1,4 +1,4 @@
-const url = "http://localhost:3000";
+const url = "https://threadd.herokuapp.com";
 
 const getHeaders = () => {
   return {

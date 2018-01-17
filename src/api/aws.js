@@ -1,4 +1,4 @@
-import ReactS3 from "react-s3";
+import ReactS3 from "../react-s3";
 
 const config = {
   bucketName: "thread-d",

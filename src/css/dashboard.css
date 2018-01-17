@@ -162,6 +162,33 @@
   cursor: pointer;
 }
 
+#male-female-container {
+  margin-top: 7%;
+  margin-bottom: 4%;
+}
+
+#male-female-choice {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.symbol {
+  font-size: 4em;
+  font-weight: lighter;
+  color: rgb(179, 172, 167);
+  opacity: 0.5;
+  margin-bottom: 2.5%;
+  margin-top: 2.5%;
+}
+
+.symbol:hover {
+  cursor: pointer;
+}
+
+.symbol.selected {
+  opacity: 1;
+}
+
 #start-render {
   width: 100%;
   height: 50px;

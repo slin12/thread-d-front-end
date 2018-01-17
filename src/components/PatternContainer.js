@@ -72,10 +72,39 @@ class PatternContainer extends React.Component {
           {this.props.patterns.length > 1 ? (
             <span onClick={this.handleFrontClick}> ▻</span>
           ) : null}
+
+          <div id="male-female-container">
+            <h4>Choose A T-Shirt </h4>
+            <div id="male-female-choice">
+              <div onClick={() => this.props.setModel("male")}>
+                <h1
+                  className={
+                    this.props.model === "male" ? "symbol selected" : "symbol"
+                  }
+                >
+                  ♂
+                </h1>{" "}
+                <small>Male</small>
+              </div>
+              <div onClick={() => this.props.setModel("female")}>
+                <h1
+                  className={
+                    this.props.model === "female" ? "symbol selected" : "symbol"
+                  }
+                >
+                  ♀
+                </h1>{" "}
+                <small>Female</small>
+              </div>
+            </div>
+          </div>
         </div>
+
         <button
           style={
-            this.props.currentPattern.length > 0 ? null : { display: "none" }
+            this.props.currentPattern.length > 0 && this.props.model.length > 0
+              ? null
+              : { display: "none" }
           }
           id="start-render"
           onClick={this.handleStart}
@@ -102,7 +131,11 @@ const chunkArray = array => {
 
 const mapStateToProps = state => {
   let chunkedArray = chunkArray(state.user.patterns);
-  return { patterns: chunkedArray, currentPattern: state.currentPattern };
+  return {
+    patterns: chunkedArray,
+    currentPattern: state.currentPattern,
+    model: state.currentModel
+  };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(PatternContainer));
