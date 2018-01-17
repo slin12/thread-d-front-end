@@ -63,6 +63,10 @@
   opacity: 0.5;
 }
 
+.interactive-img:hover {
+  cursor: pointer;
+}
+
 .interaction-selected {
   opacity: 1;
 }
@@ -70,13 +74,18 @@
 #colors-container {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
+  align-items: center;
 }
 
 .color-box {
   width: 50px;
   height: 100px;
   opacity: 0.5;
+}
+
+.color-box:hover {
+  cursor: pointer;
 }
 
 .individual-color-box {
@@ -86,6 +95,10 @@
 
 .color-box-selected {
   opacity: 1;
+}
+
+#custom-color-button:hover {
+  cursor: pointer;
 }
 
 #start-interaction {
@@ -127,7 +140,6 @@
 
 #your-patterns {
   border: 1px solid rgb(179, 172, 167);
-  padding: 2%;
 }
 
 .pattern-image {
@@ -147,6 +159,10 @@
   max-width: auto;
   height: 100%;
   opacity: 0.5;
+}
+
+#your-patterns img:hover {
+  cursor: pointer;
 }
 
 #your-patterns img.selected {

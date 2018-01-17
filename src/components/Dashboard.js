@@ -2,6 +2,7 @@ import React from "react";
 import "../css/dashboard.css";
 import PatternSelector from "./PatternSelector";
 import PatternContainer from "./PatternContainer";
+import CustomColorPicker from "./CustomColorPicker";
 
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -12,6 +13,8 @@ class Dashboard extends React.Component {
   render() {
     return this.props.loggedIn ? (
       <div>
+        {this.props.showModal ? <CustomColorPicker /> : null}
+
         <button
           id="log-out"
           onClick={() => this.props.handleLogout(this.props.history)}
@@ -37,7 +40,11 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { user: state.user.name, loggedIn: state.loggedIn };
+  return {
+    user: state.user.name,
+    loggedIn: state.loggedIn,
+    showModal: state.showModal
+  };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(Dashboard));

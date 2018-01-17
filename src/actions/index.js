@@ -6,7 +6,8 @@ import {
   SET_COLOR,
   SET_MODEL,
   UPDATE_USER_PATTERNS,
-  LOGOUT
+  LOGOUT,
+  TOGGLE_MODAL
 } from "./types";
 import AuthAdapter from "../api";
 
@@ -80,4 +81,8 @@ export function handleLogout(history) {
   localStorage.clear();
   history.push("/");
   return { type: LOGOUT };
+}
+
+export function toggleModal() {
+  return { type: TOGGLE_MODAL };
 }

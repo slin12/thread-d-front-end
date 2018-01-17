@@ -60,7 +60,6 @@ class PatternSelector extends React.Component {
   };
 
   render() {
-    console.log("props in pattern selector", this.props);
     return (
       <div id="create-pattern-container" className="choices-child">
         <h3>Create A Pattern</h3>
@@ -97,7 +96,14 @@ class PatternSelector extends React.Component {
             </div>
           </div>
           <h4>Choose A Color Scheme</h4>
-          <div id="colors-container">{this.colors()}</div>
+          <div id="colors-container">
+            {this.colors()}
+            <div>
+              <h2 id="custom-color-button" onClick={this.props.toggleModal}>
+                +
+              </h2>
+            </div>
+          </div>
           <button
             style={
               this.props.selectedPattern.length > 0 &&
