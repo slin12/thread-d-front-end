@@ -95,29 +95,32 @@ class Render extends React.Component {
       };
       return (
         <div id="render">
-          <div id="share-icons">
-            <ShareButtons.TwitterShareButton
-              url={url}
-              title="I designed this t-shirt on thread'd. Check out this awesome 3D model."
-              hashtags={["threadd", "customdesign", "futurefashion"]}
-              children={<TwitterIcon size={32} round={true} />}
-            />
-            <ShareButtons.RedditShareButton
-              url={url}
-              title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
-              children={<RedditIcon size={32} round={true} />}
-            />
-            <ShareButtons.LinkedinShareButton
-              url={url}
-              title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
-              description="thread'd was made with React and Rails by Shirley Lin"
-              children={<LinkedInIcon size={32} round={true} />}
-            />
-            <ShareButtons.EmailShareButton
-              url={url}
-              children={<EmailIcon size={32} round={true} />}
-            />
-          </div>
+          {this.props.loggedIn ? (
+            <div id="share-icons">
+              <ShareButtons.TwitterShareButton
+                url={url}
+                title="I designed this t-shirt on thread'd. Check out this awesome 3D model."
+                hashtags={["threadd", "customdesign", "futurefashion"]}
+                children={<TwitterIcon size={32} round={true} />}
+              />
+              <ShareButtons.RedditShareButton
+                url={url}
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
+                children={<RedditIcon size={32} round={true} />}
+              />
+              <ShareButtons.LinkedinShareButton
+                url={url}
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
+                description="thread'd was made with React and Rails by Shirley Lin"
+                children={<LinkedInIcon size={32} round={true} />}
+              />
+              <ShareButtons.EmailShareButton
+                url={url}
+                children={<EmailIcon size={32} round={true} />}
+              />
+            </div>
+          ) : null}
+
           <React3
             mainCamera="camera"
             width={width}
