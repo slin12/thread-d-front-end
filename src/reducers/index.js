@@ -8,7 +8,6 @@ import showModalReducer from "./showModalReducer";
 import colorsReducer from "./colorsReducer";
 
 export default combineReducers({
-  colors: colorsReducer,
   user: userReducer,
   loggedIn: loggedInReducer,
   currentPattern: currentPatternReducer,

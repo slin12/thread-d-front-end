@@ -58,7 +58,7 @@
 }
 
 .interactive-img {
-  max-width: 50%;
+  max-width: 130px;
   height: auto;
   opacity: 0.5;
 }
@@ -101,6 +101,24 @@
 
 #custom-color-button:hover {
   cursor: pointer;
+}
+
+.delete-color {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(235, 81, 96);
+  border-radius: 100%;
+  position: relative;
+  top: -110px;
+  left: 40px;
+  color: rgb(179, 172, 167);
+  transition: 0.5s all;
+}
+
+.delete-color:hover {
+  cursor: pointer;
+  background-color: rgb(179, 172, 167);
+  color: rgb(235, 81, 96);
 }
 
 #start-interaction {

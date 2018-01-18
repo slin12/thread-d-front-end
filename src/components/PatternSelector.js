@@ -88,7 +88,7 @@ class PatternSelector extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    colors: state.colors,
+    colors: state.user.colors,
     selectedPattern: state.patternOptions.name,
     selectedColor: state.patternOptions.selectedColor
   };

@@ -21,15 +21,18 @@ class PatternColorSelector extends React.Component {
 
   render() {
     return (
-      <div
-        className={
-          this.props.selectedColor === this.props.colors[0]
-            ? "color-box color-box-selected"
-            : "color-box"
-        }
-        onClick={this.handleColorSelection}
-      >
-        {this.colorboxes()}
+      <div>
+        <div
+          className={
+            this.props.selectedColor === this.props.colors[0]
+              ? "color-box color-box-selected"
+              : "color-box"
+          }
+          onClick={this.handleColorSelection}
+        >
+          {this.colorboxes()}
+        </div>
+        <div className="delete-color">✖︎</div>
       </div>
     );
   }
