@@ -16,10 +16,13 @@ import AuthAdapter from "../api";
 export function createUser(user, history) {
   return dispatch => {
     AuthAdapter.signup(user).then(res => {
-      if (!res.errors) {
+      console.log(res);
+      if (!res.error) {
         localStorage.setItem("token", res.token);
         dispatch({ type: SET_CURRENT_USER, user: res.user });
         history.push("/dashboard");
+      } else {
+        dispatch({ type: SET_CURRENT_USER, user: res });
       }
     });
   };
@@ -33,6 +36,8 @@ export function loginUser(user, history) {
         localStorage.setItem("token", res.token);
         dispatch({ type: SET_CURRENT_USER, user: res.user });
         history.push("/dashboard");
+      } else {
+        dispatch({ type: SET_CURRENT_USER, user: res });
       }
     });
   };

@@ -8,8 +8,7 @@ class SignUp extends React.Component {
   //handle state for the forms
   state = {
     signup: { name: "", email: "", password: "", passwordConfirm: "" },
-    login: { email: "", password: "" },
-    errors: []
+    login: { email: "", password: "" }
   };
 
   handleChange = (e, topKey, key) => {
@@ -24,16 +23,27 @@ class SignUp extends React.Component {
   handleSignUpSubmit = e => {
     e.preventDefault();
     this.props.createUser(this.state.signup, this.props.history);
+    this.setState({
+      signup: { name: "", email: "", password: "", passwordConfirm: "" },
+      login: { email: "", password: "" }
+    });
   };
 
   handleLoginSubmit = e => {
     e.preventDefault();
     this.props.loginUser(this.state.login, this.props.history);
+    this.setState({
+      signup: { name: "", email: "", password: "", passwordConfirm: "" },
+      login: { email: "", password: "" }
+    });
   };
 
   render() {
     return (
       <div>
+        {this.props.user.error ? (
+          <div id="error-message">{this.props.user.error}</div>
+        ) : null}
         <h1 id="login-signup-title">thread'd</h1>
         <div id="login-signup-container">
           <div
@@ -122,7 +132,8 @@ class SignUp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.loggedIn
+  loggedIn: state.loggedIn,
+  user: state.user
 });
 
 export default withRouter(connect(mapStateToProps, actions)(SignUp));

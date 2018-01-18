@@ -1,6 +1,6 @@
 //this file has all our fetch requests to our rails backend
 
-const url = "https://threadd.herokuapp.com/";
+const url = "http://localhost:3000";
 
 //to make sure if our token changes, we call this function every time
 const getHeaders = () => {
