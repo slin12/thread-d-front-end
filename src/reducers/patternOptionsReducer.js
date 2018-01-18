@@ -12,10 +12,8 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         colors: action.colors,
-        selectedColor: action.colors[0]
+        selectedColor: action.colors.join("")
       };
-    case "ADD_COLOR":
-      return { ...state, selectedColor: action.colors[0] };
     case "LOGOUT":
       return defaultState;
     default:

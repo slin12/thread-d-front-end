@@ -7,7 +7,6 @@ import {
   SET_MODEL,
   UPDATE_USER_PATTERNS,
   LOGOUT,
-  ADD_COLOR,
   TOGGLE_MODAL
 } from "./types";
 import AuthAdapter from "../api";
@@ -71,11 +70,23 @@ export function setPatternName(name) {
 }
 
 export function addColor(colorArray) {
-  return { type: ADD_COLOR, colors: colorArray };
+  return dispatch => {
+    AuthAdapter.createColor(colorArray).then(json => {
+      dispatch({ type: SET_CURRENT_USER, user: json });
+    });
+  };
 }
 
 export function setColor(colorArray) {
   return { type: SET_COLOR, colors: colorArray };
+}
+
+export function deleteColor(colorArray) {
+  return dispatch => {
+    AuthAdapter.deleteColor(colorArray).then(json => {
+      dispatch({ type: SET_CURRENT_USER, user: json });
+    });
+  };
 }
 
 export function setModel(model) {

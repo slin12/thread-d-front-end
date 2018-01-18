@@ -45,6 +45,22 @@ class AuthAdapter {
       body: JSON.stringify({ url: imageUrl })
     }).then(res => res.json());
   }
+
+  static deleteColor(colors) {
+    return fetch(`${url}/users/colors`, {
+      method: "PATCH",
+      headers: getHeaders(),
+      body: JSON.stringify({ colors })
+    }).then(res => res.json());
+  }
+
+  static createColor(colors) {
+    return fetch(`${url}/users/colors`, {
+      method: "post",
+      headers: getHeaders(),
+      body: JSON.stringify({ colors })
+    }).then(res => res.json());
+  }
 }
 
 export default AuthAdapter;
