@@ -14,7 +14,7 @@ const TwitterIcon = generateShareIcon("twitter");
 const EmailIcon = generateShareIcon("email");
 const LinkedInIcon = generateShareIcon("linkedin");
 const RedditIcon = generateShareIcon("reddit");
-const url = "http://localhost:3001/render/59f86663-847e-45c8-9bb9-516991cfcdca";
+const url = "https://threadd-adc5f.firebaseapp.com/";
 
 class Render extends React.Component {
   constructor(props, context) {
