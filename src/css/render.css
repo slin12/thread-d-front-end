@@ -40,7 +40,7 @@
   cursor: pointer;
 }
 
-#loading {
+.loading {
   top: 0;
   width: 100%;
   background-color: rgb(50, 50, 50);
@@ -48,7 +48,7 @@
   text-align: center;
 }
 
-#loading h1 {
+.loading h1 {
   font-size: 4.5em;
   font-family: "Libre Franklin";
   font-style: italic;

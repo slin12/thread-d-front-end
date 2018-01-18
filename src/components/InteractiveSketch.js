@@ -9,17 +9,20 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 class InteractiveSketch extends React.Component {
+  //these need to be passed down into our sketch
   state = {
     saved: false,
     backClicked: false
   };
 
+  //this function is connected to the save button
   handleClick = () => {
     this.setState({
       saved: true
     });
   };
 
+  //this function is connected to the back button
   handleBackClick = () => {
     this.setState({
       backClicked: true

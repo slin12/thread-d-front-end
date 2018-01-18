@@ -4,10 +4,12 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 
 class PatternContainer extends React.Component {
+  //keep track of where we are in the array right now
   state = {
     imageArrayIdx: 0
   };
 
+  //these two functions handle the arrows that show your patterns
   handleBackClick = () => {
     let newState = this.state.imageArrayIdx - 1;
     if (newState < 0) {
@@ -28,8 +30,10 @@ class PatternContainer extends React.Component {
     });
   };
 
+  //connected to the start button
   handleStart = e => {
     e.preventDefault();
+    //makes a unique url for the render page for sharing
     let slug = this.props.currentPattern.replace(
       "https://thread-d.s3.amazonaws.com/undefined/",
       ""
@@ -116,10 +120,7 @@ class PatternContainer extends React.Component {
   }
 }
 
-// CHOOSE A MODEL
-// <h4>Choose A Model</h4>
-// <img id="tshirt-img" src="tshirt.png" alt="tshirt model" />
-
+//splits our pattern array into an array or arrays each size 3
 const chunkArray = array => {
   let copyArray = [...array];
   let results = [];

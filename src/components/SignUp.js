@@ -5,12 +5,7 @@ import * as actions from "../actions";
 import "../css/signup.css";
 
 class SignUp extends React.Component {
-  // componentDidMount() {
-  //   if (this.props.loggedIn === false) {
-  //     this.props.history.push("/");
-  //   }
-  // }
-
+  //handle state for the forms
   state = {
     signup: { name: "", email: "", password: "", passwordConfirm: "" },
     login: { email: "", password: "" },

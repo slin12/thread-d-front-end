@@ -1,5 +1,8 @@
+//this file has all our fetch requests to our rails backend
+
 const url = "http://localhost:3000";
 
+//to make sure if our token changes, we call this function every time
 const getHeaders = () => {
   return {
     "content-type": "application/json",
@@ -32,6 +35,7 @@ class AuthAdapter {
     }).then(res => res.json());
   }
 
+  //if they already have a token in localStorage
   static authorizeUser() {
     return fetch(`${url}/auth`, {
       headers: getHeaders()

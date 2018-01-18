@@ -5,6 +5,7 @@ import P5Wrapper from "react-p5-wrapper";
 import sketch from "../sketches/LandingPageSketch";
 
 class LandingPage extends React.Component {
+  //passed down into our landing page sketch
   state = {
     clicked: false
   };
@@ -13,7 +14,6 @@ class LandingPage extends React.Component {
     this.setState({
       clicked: true
     });
-    // this.forceUpdate();
   };
 
   render() {

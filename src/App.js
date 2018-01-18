@@ -3,6 +3,8 @@ import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
+import "./css/render.css";
+
 import AuthAdapter from "./api";
 
 import LandingPage from "./components/LandingPage";
@@ -12,11 +14,13 @@ import InteractiveSketch from "./components/InteractiveSketch";
 import Render from "./components/Render";
 
 class App extends Component {
+  //make sure auth is completed before rendering anything
   state = {
     authCompleted: false
   };
 
   componentWillMount() {
+    //if we already have a token, hit our backend to confirm it
     if (localStorage.getItem("token")) {
       AuthAdapter.authorizeUser().then(res => {
         if (res.errors) {
@@ -28,6 +32,7 @@ class App extends Component {
           });
         }
       });
+      //or direct them to the landing page
     } else {
       this.setState({
         authCompleted: true
@@ -60,7 +65,11 @@ class App extends Component {
         </div>
       );
     } else {
-      return null;
+      return (
+        <div className="loading" style={{ height: window.innerHeight }}>
+          <h1>Loading...</h1>
+        </div>
+      );
     }
   }
 }

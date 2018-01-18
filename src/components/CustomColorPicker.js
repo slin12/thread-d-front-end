@@ -9,6 +9,7 @@ import { SketchPicker } from "react-color";
 class CustomColorPicker extends React.Component {
   state = {
     displayColorPicker: false,
+    //default colors that show up in modal
     colors: [
       "rgb(150, 187, 187)",
       "rgb(97, 137, 133)",
@@ -22,7 +23,6 @@ class CustomColorPicker extends React.Component {
   };
 
   handleClick = (e, idx) => {
-    console.log(e);
     this.setState({
       displayColorPicker: !this.state.displayColorPicker,
       mouseX: e.screenX,
@@ -32,6 +32,7 @@ class CustomColorPicker extends React.Component {
   };
 
   handleColorSubmit = () => {
+    //once you're done, closes the modal and goes to our actions to update backend and redux
     this.props.toggleModal();
     this.props.addColor(this.state.colors);
   };
@@ -41,8 +42,9 @@ class CustomColorPicker extends React.Component {
   };
 
   handleChange = color => {
+    //make sure format stays consistent
     let rgb = `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`;
-    console.log(rgb);
+    //make copy of array to non-destructively modify
     let tempColors = this.state.colors.slice();
     tempColors[this.state.currentColor] = rgb;
     this.setState({ colors: tempColors });

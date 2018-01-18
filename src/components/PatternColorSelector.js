@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 class PatternColorSelector extends React.Component {
+  //if a palette is clicked, sets it to selected in state
   handleColorSelection = () => {
     this.props.setColor(this.props.colors);
   };
 
+  //makes the individual color boxes
   colorboxes = () => {
     return this.props.colors.map((c, idx) => {
       return (

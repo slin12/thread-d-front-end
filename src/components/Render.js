@@ -21,59 +21,58 @@ class Render extends React.Component {
     super(props, context);
     this.meshPosition = new THREE.Vector3(0, 0, 0);
 
+    //initial state of our geometry
     this.state = {
       cubeRotation: new THREE.Euler(),
       geometry: { vertices: [], faces: [], faceVertexUvs: [] },
       texture: { uuid: "" }
     };
 
-    this._onAnimate = () => {
-      this.setState({
-        cubeRotation: new THREE.Euler(0, this.state.cubeRotation.y + 0.01, 0)
-      });
-    };
+    // this._onAnimate = () => {
+    //   this.setState({
+    //     cubeRotation: new THREE.Euler(0, this.state.cubeRotation.y + 0.01, 0)
+    //   });
+    // };
   }
 
   componentDidMount() {
-    // if (this.props.textureUrl.length < 1) {
-    //   this.props.history.push("/dashboard");
-    // }
+    //make female the default model
     const model = this.props.model.length > 0 ? this.props.model : "female";
 
+    //load geometry
     const loader = new THREE.JSONLoader();
     loader.load(`/${model}-tee.json`, geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
+      //set up orbit controls. need the timeout currently because controls may load before everything else.
       setTimeout(() => {
         const controls = new OrbitControls(this.refs.camera);
         this.controls = controls;
       }, 300);
     });
-    console.log("about to load");
+
+    //load texture from url
     const texture = new THREE.TextureLoader();
     texture.crossOrigin = "Anonymous";
-
     texture.load(
       `https://thread-d.s3.amazonaws.com/undefined/${
         this.props.match.params.url
       }.jpg`,
       texture => {
-        console.log("loaded!");
-        console.log(texture);
         this.setState({ texture });
       }
     );
   }
 
   componentWillUnmount() {
+    //clean up the orbit controls
     if (this.controls) {
-      console.log("in component will unmount", this.controls);
       this.controls.dispose();
       delete this.controls;
-      console.log("deleting controls", this.controls);
     }
   }
 
+  //go back to dashboard
   handleBackClick = e => {
     this.props.history.push("/dashboard");
   };
@@ -81,6 +80,7 @@ class Render extends React.Component {
   render() {
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
+    //make sure geometry and texture are loaded before rendering
     if (
       this.state.geometry.vertices.length > 0 &&
       this.state.texture.uuid.length > 0
@@ -99,18 +99,18 @@ class Render extends React.Component {
             <div id="share-icons">
               <ShareButtons.TwitterShareButton
                 url={url}
-                title="I designed this t-shirt on thread'd. Check out this awesome 3D model."
+                title="I designed this t-shirt on thread'd. Check out this awesome 3D model and make your own!"
                 hashtags={["threadd", "customdesign", "futurefashion"]}
                 children={<TwitterIcon size={32} round={true} />}
               />
               <ShareButtons.RedditShareButton
                 url={url}
-                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
                 children={<RedditIcon size={32} round={true} />}
               />
               <ShareButtons.LinkedinShareButton
                 url={url}
-                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make you own!"
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
                 description="thread'd was made with React and Rails by Shirley Lin"
                 children={<LinkedInIcon size={32} round={true} />}
               />
@@ -165,15 +165,13 @@ class Render extends React.Component {
       );
     } else {
       return (
-        <div id="loading" style={{ height: window.innerHeight }}>
+        <div className="loading" style={{ height: window.innerHeight }}>
           <h1>Loading...</h1>
         </div>
       );
     }
   }
 }
-
-//mesh
 
 const mapStateToProps = state => {
   return {

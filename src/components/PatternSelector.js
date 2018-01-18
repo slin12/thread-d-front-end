@@ -7,10 +7,12 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 
 class PatternSelector extends React.Component {
+  //when an interaction image is clicked, sets it as selected
   handleInteractionSelection = (e, name) => {
     e.target.classList.add("interaction-selected");
   };
 
+  //makes color boxes for all the user's colors
   colors = () => {
     return this.props.colors.map((c, idx) => {
       return <PatternColorSelector colors={c} key={idx} />;

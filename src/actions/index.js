@@ -1,3 +1,5 @@
+//This file handles all the actions sent to our reducers. These functions are imported and used with connect
+
 import {
   SET_CURRENT_USER,
   SET_LOGGED_IN,
