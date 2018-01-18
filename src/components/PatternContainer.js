@@ -45,16 +45,27 @@ class PatternContainer extends React.Component {
   patterns = () => {
     if (this.props.patterns.length > 0) {
       return this.props.patterns[this.state.imageArrayIdx].map(p => (
-        <div
-          className="pattern-image"
-          key={p.url}
-          onClick={() => this.props.selectPattern(p.url)}
-        >
-          <img
-            src={p.url}
-            alt="user-pattern"
-            className={this.props.currentPattern === p.url ? "selected" : null}
-          />
+        <div key={p.url}>
+          <div
+            className="pattern-image"
+            onClick={() => this.props.selectPattern(p.url)}
+          >
+            <img
+              src={p.url}
+              alt="user-pattern"
+              className={
+                this.props.currentPattern === p.url ? "selected" : null
+              }
+            />
+          </div>
+          <div
+            className="delete-pattern"
+            onClick={() => {
+              this.props.deletePattern(p.url);
+            }}
+          >
+            ✖︎
+          </div>
         </div>
       ));
     } else {

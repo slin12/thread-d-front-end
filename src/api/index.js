@@ -65,6 +65,14 @@ class AuthAdapter {
       body: JSON.stringify({ colors })
     }).then(res => res.json());
   }
+
+  static deletePattern(patternUrl) {
+    return fetch(`${url}/patterns`, {
+      method: "DELETE",
+      headers: getHeaders(),
+      body: JSON.stringify({ url: patternUrl })
+    }).then(res => res.json());
+  }
 }
 
 export default AuthAdapter;

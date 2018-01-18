@@ -96,6 +96,14 @@ export function deleteColor(colorArray) {
   };
 }
 
+export function deletePattern(url) {
+  return dispatch => {
+    AuthAdapter.deletePattern(url).then(json => {
+      dispatch({ type: SET_CURRENT_USER, user: json });
+    });
+  };
+}
+
 export function setModel(model) {
   return { type: SET_MODEL, model };
 }
