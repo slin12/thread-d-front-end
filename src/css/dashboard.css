@@ -255,3 +255,23 @@
   background-color: rgb(179, 172, 167);
   color: rgb(235, 81, 96);
 }
+
+/* TRANSITIONS  */
+
+.bounce-fade-enter {
+  opacity: 0.01;
+}
+
+.bounce-fade-enter.bounce-fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.bounce-fade-leave {
+  opacity: 1;
+}
+
+.bounce-fade-leave.bounce-fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in;
+}

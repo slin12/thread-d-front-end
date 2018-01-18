@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/dashboard.css";
 import PatternColorSelector from "./PatternColorSelector";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -60,7 +61,14 @@ class PatternSelector extends React.Component {
             </div>
           </div>
           <h4>Choose A Color Scheme</h4>
-          <div id="colors-container">
+
+          <ReactCSSTransitionGroup
+            transitionName="bounce-fade"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={100}
+            component="div"
+            id="colors-container"
+          >
             {this.colors()}
             {this.props.colors.length < 6 ? (
               <div>
@@ -77,7 +85,8 @@ class PatternSelector extends React.Component {
                 </div>
               </div>
             ) : null}
-          </div>
+          </ReactCSSTransitionGroup>
+
           <button
             style={
               this.props.selectedPattern.length > 0 &&

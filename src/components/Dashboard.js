@@ -3,7 +3,6 @@ import "../css/dashboard.css";
 import PatternSelector from "./PatternSelector";
 import PatternContainer from "./PatternContainer";
 import CustomColorPicker from "./CustomColorPicker";
-
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
