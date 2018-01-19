@@ -65,3 +65,23 @@
 .SocialMediaShareButton {
   margin-top: 20%;
 }
+
+/* TRANSITION  */
+
+.loading-appear {
+  opacity: 0.01;
+}
+
+.loading-appear.loading-appear-active {
+  opacity: 1;
+  transition: opacity 0.7s ease-in;
+}
+
+.slide-down-appear {
+  margin-top: -10%;
+}
+
+.slide-down-appear.slide-down-appear-active {
+  margin-top: 0%;
+  transition: margin-top 1s ease-in;
+}
