@@ -78,10 +78,10 @@
 }
 
 .slide-down-appear {
-  margin-top: -10%;
+  margin-left: -7%;
 }
 
 .slide-down-appear.slide-down-appear-active {
-  margin-top: 0%;
-  transition: margin-top 1s ease-in;
+  margin-left: 0%;
+  transition: margin-left 1s ease-out;
 }

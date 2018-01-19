@@ -26,7 +26,16 @@ class PatternSelector extends React.Component {
 
   render() {
     return (
-      <div id="create-pattern-container" className="choices-child">
+      <ReactCSSTransitionGroup
+        transitionName="selector"
+        transitionAppear={true}
+        transitionAppearTimeout={400}
+        transitionEnter={false}
+        transitionLeave={false}
+        component="div"
+        id="create-pattern-container"
+        className="choices-child"
+      >
         <h3>Create A Pattern</h3>
         <div id="create-pattern-choices">
           <h4>Choose An Experience</h4>
@@ -65,7 +74,7 @@ class PatternSelector extends React.Component {
           <ReactCSSTransitionGroup
             transitionName="bounce-fade"
             transitionEnterTimeout={500}
-            transitionLeaveTimeout={100}
+            transitionLeave={false}
             component="div"
             id="colors-container"
           >
@@ -100,7 +109,7 @@ class PatternSelector extends React.Component {
             START
           </button>
         </div>
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

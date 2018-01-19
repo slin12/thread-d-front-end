@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 class PatternContainer extends React.Component {
   //keep track of where we are in the array right now
   state = {
@@ -76,7 +78,15 @@ class PatternContainer extends React.Component {
   render() {
     console.log(this.props);
     return (
-      <div className="choices-child">
+      <ReactCSSTransitionGroup
+        transitionName="patterns"
+        transitionAppear={true}
+        transitionAppearTimeout={800}
+        transitionEnter={false}
+        transitionLeave={false}
+        component="div"
+        className="choices-child"
+      >
         <h3>See Your Designs</h3>
         <div id="your-patterns">
           <h4>Your Patterns </h4>
@@ -126,7 +136,7 @@ class PatternContainer extends React.Component {
         >
           START
         </button>
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

@@ -275,3 +275,36 @@
   opacity: 0.01;
   transition: opacity 100ms ease-in;
 }
+
+.selector-appear {
+  opacity: 0.01;
+  margin-left: -6%;
+}
+
+.selector-appear.selector-appear-active {
+  opacity: 1;
+  margin-left: 0%;
+  transition: margin-left 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.patterns-appear {
+  opacity: 0.01;
+  margin-left: -6%;
+}
+
+.patterns-appear.patterns-appear-active {
+  opacity: 1;
+  margin-left: 0%;
+  transition: margin-left 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.dashboard-title-appear {
+  opacity: 0.01;
+  margin-left: -6%;
+}
+
+.dashboard-title-appear.dashboard-title-appear-active {
+  opacity: 1;
+  margin-left: 0%;
+  transition: margin-left 1.2s ease-out, opacity 1.2s ease-out;
+}

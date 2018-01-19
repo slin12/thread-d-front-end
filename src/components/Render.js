@@ -15,7 +15,6 @@ const TwitterIcon = generateShareIcon("twitter");
 const EmailIcon = generateShareIcon("email");
 const LinkedInIcon = generateShareIcon("linkedin");
 const RedditIcon = generateShareIcon("reddit");
-const url = "https://threadd-adc5f.firebaseapp.com/";
 
 class Render extends React.Component {
   constructor(props, context) {
@@ -79,8 +78,13 @@ class Render extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
+    //get current url for sharing purposes
+    const url = `https://threadd-adc5f.firebaseapp.com/${
+      this.props.location.pathname
+    }`;
     //make sure geometry and texture are loaded before rendering
     if (
       this.state.geometry.vertices.length > 0 &&
@@ -95,40 +99,39 @@ class Render extends React.Component {
         lookAt: new THREE.Vector3(0, 0, -6)
       };
       return (
-        <ReactCSSTransitionGroup
-          transitionName="slide-down"
-          transitionAppear={true}
-          transitionAppearTimeout={1000}
-          transitionEnter={false}
-          transitionLeave={false}
-        >
-          <div id="render">
-            {this.props.loggedIn ? (
-              <div id="share-icons">
-                <ShareButtons.TwitterShareButton
-                  url={url}
-                  title="I designed this t-shirt on thread'd. Check out this awesome 3D model and make your own!"
-                  hashtags={["threadd", "customdesign", "futurefashion"]}
-                  children={<TwitterIcon size={32} round={true} />}
-                />
-                <ShareButtons.RedditShareButton
-                  url={url}
-                  title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
-                  children={<RedditIcon size={32} round={true} />}
-                />
-                <ShareButtons.LinkedinShareButton
-                  url={url}
-                  title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
-                  description="thread'd was made with React and Rails by Shirley Lin"
-                  children={<LinkedInIcon size={32} round={true} />}
-                />
-                <ShareButtons.EmailShareButton
-                  url={url}
-                  children={<EmailIcon size={32} round={true} />}
-                />
-              </div>
-            ) : null}
-
+        <div id="render">
+          {this.props.loggedIn ? (
+            <div id="share-icons">
+              <ShareButtons.TwitterShareButton
+                url={url}
+                title="I designed this t-shirt on thread'd. Check out this awesome 3D model and make your own!"
+                hashtags={["threadd", "customdesign", "futurefashion"]}
+                children={<TwitterIcon size={32} round={true} />}
+              />
+              <ShareButtons.RedditShareButton
+                url={url}
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
+                children={<RedditIcon size={32} round={true} />}
+              />
+              <ShareButtons.LinkedinShareButton
+                url={url}
+                title="I designed a custom t-shirt on thread'd. Check out this awesome 3D model and make your own!"
+                description="thread'd was made with React and Rails by Shirley Lin"
+                children={<LinkedInIcon size={32} round={true} />}
+              />
+              <ShareButtons.EmailShareButton
+                url={url}
+                children={<EmailIcon size={32} round={true} />}
+              />
+            </div>
+          ) : null}
+          <ReactCSSTransitionGroup
+            transitionName="slide-down"
+            transitionAppear={true}
+            transitionAppearTimeout={1000}
+            transitionEnter={false}
+            transitionLeave={false}
+          >
             <React3
               mainCamera="camera"
               width={width}
@@ -153,24 +156,24 @@ class Render extends React.Component {
                 </mesh>
               </scene>
             </React3>
-            <div id="render-bottom-bar">
-              {this.props.loggedIn ? (
-                <button onClick={this.handleBackClick} id="render-back">
-                  BACK
-                </button>
-              ) : (
-                <button onClick={this.handleBackClick} id="render-back">
-                  SIGN UP
-                </button>
-              )}
+          </ReactCSSTransitionGroup>
+          <div id="render-bottom-bar">
+            {this.props.loggedIn ? (
+              <button onClick={this.handleBackClick} id="render-back">
+                BACK
+              </button>
+            ) : (
+              <button onClick={this.handleBackClick} id="render-back">
+                SIGN UP
+              </button>
+            )}
 
-              <span>
-                Click and Drag to move around model. Scroll to zoom in and out.
-              </span>
-              <button style={{ display: "hidden" }} />
-            </div>
+            <span>
+              Click and Drag to move around model. Scroll to zoom in and out.
+            </span>
+            <button style={{ visibility: "hidden" }} />
           </div>
-        </ReactCSSTransitionGroup>
+        </div>
       );
     } else {
       return (
