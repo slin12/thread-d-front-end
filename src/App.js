@@ -13,6 +13,8 @@ import Dashboard from "./components/Dashboard";
 import InteractiveSketch from "./components/InteractiveSketch";
 import Render from "./components/Render";
 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 class App extends Component {
   //make sure auth is completed before rendering anything
   state = {
@@ -67,7 +69,15 @@ class App extends Component {
     } else {
       return (
         <div className="loading" style={{ height: window.innerHeight }}>
-          <h1>Loading...</h1>
+          <ReactCSSTransitionGroup
+            transitionName="loading"
+            transitionAppear={true}
+            transitionAppearTimeout={700}
+            transitionEnter={false}
+            transitionLeave={false}
+          >
+            <h1>Loading...</h1>
+          </ReactCSSTransitionGroup>
         </div>
       );
     }

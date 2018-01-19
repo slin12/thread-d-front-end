@@ -169,3 +169,27 @@ input:hover {
   align-items: center;
   justify-content: center;
 }
+
+/* TRANSITIONS  */
+
+.signup-appear {
+  opacity: 0.01;
+  margin-left: -8%;
+}
+
+.signup-appear.signup-appear-active {
+  opacity: 1;
+  margin-left: 0%;
+  transition: margin-left 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.login-appear {
+  opacity: 0.01;
+  margin-left: -8%;
+}
+
+.login-appear.login-appear-active {
+  opacity: 1;
+  margin-left: 0%;
+  transition: margin-left 1.2s ease-out, opacity 1.2s ease-out;
+}

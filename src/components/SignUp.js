@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import "../css/signup.css";
 
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 class SignUp extends React.Component {
   //handle state for the forms
   state = {
@@ -46,9 +48,15 @@ class SignUp extends React.Component {
         ) : null}
         <h1 id="login-signup-title">thread'd</h1>
         <div id="login-signup-container">
-          <div
+          <ReactCSSTransitionGroup
+            component="div"
             id="signup-container"
             style={{ height: window.innerHeight * 0.6 }}
+            transitionName="signup"
+            transitionAppear={true}
+            transitionAppearTimeout={800}
+            transitionEnter={false}
+            transitionLeave={false}
           >
             <h3>sign up</h3>
             <form className="topBefore" onSubmit={this.handleSignUpSubmit}>
@@ -94,11 +102,17 @@ class SignUp extends React.Component {
               />
               <input id="signup-submit" type="submit" value="SIGN UP" />
             </form>
-          </div>
+          </ReactCSSTransitionGroup>
 
-          <div
+          <ReactCSSTransitionGroup
+            component="div"
             id="login-container"
             style={{ height: window.innerHeight * 0.6 }}
+            transitionName="login"
+            transitionAppear={true}
+            transitionAppearTimeout={1200}
+            transitionEnter={false}
+            transitionLeave={false}
           >
             <h3>log in</h3>
             <form className="topBefore" onSubmit={this.handleLoginSubmit}>
@@ -124,7 +138,7 @@ class SignUp extends React.Component {
               />
               <input id="login-submit" type="submit" value="LOG IN" />
             </form>
-          </div>
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );
