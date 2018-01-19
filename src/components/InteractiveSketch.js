@@ -3,6 +3,7 @@ import P5Wrapper from "react-p5-wrapper";
 import "../css/interactive.css";
 import scroll from "../sketches/Scroll";
 import square from "../sketches/Square";
+import draw from "../sketches/Draw";
 import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -35,7 +36,7 @@ class InteractiveSketch extends React.Component {
     ) : (
       <div id="interactive-sketch">
         <P5Wrapper
-          sketch={this.props.sketchName === "scroll" ? scroll : square}
+          sketch={draw}
           saved={this.state.saved}
           history={this.props.history}
           createPattern={this.props.createPattern}

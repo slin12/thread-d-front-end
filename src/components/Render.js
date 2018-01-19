@@ -47,8 +47,9 @@ class Render extends React.Component {
       //set up orbit controls. need the timeout currently because controls may load before everything else.
       setTimeout(() => {
         const controls = new OrbitControls(this.refs.camera);
+        controls.position0.set(0, 0, 0);
         this.controls = controls;
-      }, 300);
+      }, 600);
     });
 
     //load texture from url
@@ -82,7 +83,7 @@ class Render extends React.Component {
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
     //get current url for sharing purposes
-    const url = `https://threadd-adc5f.firebaseapp.com/${
+    const url = `https://threadd-adc5f.firebaseapp.com${
       this.props.location.pathname
     }`;
     //make sure geometry and texture are loaded before rendering
