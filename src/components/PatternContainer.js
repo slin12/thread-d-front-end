@@ -123,19 +123,19 @@ class PatternContainer extends React.Component {
               </div>
             </div>
           </div>
+          <button
+            style={
+              this.props.currentPattern.length > 0 &&
+              this.props.model.length > 0
+                ? null
+                : { display: "none" }
+            }
+            id="start-render"
+            onClick={this.handleStart}
+          >
+            START
+          </button>
         </div>
-
-        <button
-          style={
-            this.props.currentPattern.length > 0 && this.props.model.length > 0
-              ? null
-              : { display: "none" }
-          }
-          id="start-render"
-          onClick={this.handleStart}
-        >
-          START
-        </button>
       </ReactCSSTransitionGroup>
     );
   }
