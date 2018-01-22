@@ -43,7 +43,7 @@ class Render extends React.Component {
         const controls = new OrbitControls(this.refs.camera);
         controls.position0.set(0, 0, 0);
         this.controls = controls;
-      }, 600);
+      }, 800);
     });
 
     //load texture from url

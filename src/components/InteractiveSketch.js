@@ -43,6 +43,24 @@ class InteractiveSketch extends React.Component {
     }
   };
 
+  sketchDescription = () => {
+    switch (this.props.skethName) {
+      case 'scroll':
+        return <span>
+          Hit any button on the keyboard to pause animation. Scroll to
+          change size of circles.
+        </span>
+      case 'square':
+        return <span>
+          Hit any button on the keyboard to pause animation. Scroll to
+          change draw radius, use up/down arrows to change size.
+        </span>
+      case 'sound':
+        return <span>
+        Hit any button on the keyboard to pause animation. Speak to change radius.</span>
+    }
+  }
+
   render() {
     return this.props.colors.length === 0 ? (
       <Redirect to="/" />
@@ -61,17 +79,7 @@ class InteractiveSketch extends React.Component {
             BACK
           </button>
 
-          {this.props.sketchName === "scroll" ? (
-            <span>
-              Hit any button on the keyboard to pause animation. Scroll to
-              change size of circles.
-            </span>
-          ) : (
-            <span>
-              Hit any button on the keyboard to pause animation. Scroll to
-              change draw radius, use up/down arrows to change size.
-            </span>
-          )}
+          {this.sketchDescription()}
 
           <button onClick={this.handleClick} id="interactive-save">
             SAVE
