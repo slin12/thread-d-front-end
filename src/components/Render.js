@@ -38,14 +38,19 @@ class Render extends React.Component {
       }.jpg`,
       texture => {
         this.setState({ texture });
+        //make the orbit controls here so it's waiting until texture and model are loaded.
         const controls = new OrbitControls(this.refs.camera);
         controls.position0.set(0, 0, 0);
+        controls.minDistance = 5;
+        controls.maxDistance = 30;
         this.controls = controls;
       },
       undefined,
-      err => {this.props.history.push('/')}
+      err => {
+        this.props.history.push("/");
+      }
     );
-  }
+  };
 
   componentDidMount() {
     //make female the default model
@@ -53,18 +58,21 @@ class Render extends React.Component {
 
     //load geometry
     const loader = new THREE.JSONLoader();
-    loader.load(`/${model}-tee.json`, geometry => {
-      geometry.center();
-      this.setState({ geometry: geometry });
-      // set up orbit controls. need the timeout currently because controls may load before everything else.
-      this.loadTexture()
-    },
-    undefined,
-    err => {this.props.history.push('/')}
-  );
+    loader.load(
+      `/${model}-tee.json`,
+      geometry => {
+        geometry.center();
+        this.setState({ geometry: geometry });
+        // after the model is loaded, load the texture
+        this.loadTexture();
+      },
+      undefined,
+      err => {
+        this.props.history.push("/");
+      }
+    );
 
     //load texture from url
-
   }
 
   componentWillUnmount() {
