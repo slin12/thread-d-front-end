@@ -43,7 +43,31 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.authCompleted === true) {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Mobile|Kindle|Silk|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      return (
+        <div style={{ textAlign: "center", padding: "3%" }}>
+          <h1
+            style={{
+              fontFamily: "Libre Franklin",
+              fontSize: "3.5em",
+              color: "rgb(235, 81, 96)",
+              marginBottom: "3%"
+            }}
+          >
+            thread'd
+          </h1>
+          <h4 style={{ color: "rgb(179, 172, 167)" }}>
+            Because of the graphic heavy nature of 3D rendering, thread'd can
+            not be viewed on mobile devices. Please come back on your laptop or
+            desktop computer!
+          </h4>
+        </div>
+      );
+    } else if (this.state.authCompleted === true) {
       return (
         <div className="App">
           <Switch>
