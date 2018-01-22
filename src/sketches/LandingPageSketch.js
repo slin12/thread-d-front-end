@@ -50,7 +50,7 @@ export default function sketch(p) {
     p.textAlign(p.CENTER);
     p.text("thread'd", window.innerWidth / 2, window.innerHeight / 2 - 70);
     //subheading
-    p.fill(255);
+    p.fill(179, 172, 167)
     p.textSize(24);
     p.textStyle(p.NORMAL);
     p.textFont("Muli");

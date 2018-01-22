@@ -29,6 +29,24 @@ class Render extends React.Component {
     };
   }
 
+  loadTexture = () => {
+    const texture = new THREE.TextureLoader();
+    texture.crossOrigin = "Anonymous";
+    texture.load(
+      `https://thread-d.s3.amazonaws.com/undefined/${
+        this.props.match.params.url
+      }.jpg`,
+      texture => {
+        this.setState({ texture });
+        const controls = new OrbitControls(this.refs.camera);
+        controls.position0.set(0, 0, 0);
+        this.controls = controls;
+      },
+      undefined,
+      err => {this.props.history.push('/')}
+    );
+  }
+
   componentDidMount() {
     //make female the default model
     const model = this.props.model.length > 0 ? this.props.model : "female";
@@ -39,24 +57,14 @@ class Render extends React.Component {
       geometry.center();
       this.setState({ geometry: geometry });
       // set up orbit controls. need the timeout currently because controls may load before everything else.
-      setTimeout(() => {
-        const controls = new OrbitControls(this.refs.camera);
-        controls.position0.set(0, 0, 0);
-        this.controls = controls;
-      }, 800);
-    });
+      this.loadTexture()
+    },
+    undefined,
+    err => {this.props.history.push('/')}
+  );
 
     //load texture from url
-    const texture = new THREE.TextureLoader();
-    texture.crossOrigin = "Anonymous";
-    texture.load(
-      `https://thread-d.s3.amazonaws.com/undefined/${
-        this.props.match.params.url
-      }.jpg`,
-      texture => {
-        this.setState({ texture });
-      }
-    );
+
   }
 
   componentWillUnmount() {
