@@ -30,13 +30,26 @@ class InteractiveSketch extends React.Component {
     });
   };
 
+  sketch = () => {
+    switch (this.props.sketchName) {
+      case "scroll":
+        return scroll;
+      case "draw":
+        return draw;
+      case "square":
+        return square;
+      default:
+        return null;
+    }
+  };
+
   render() {
     return this.props.colors.length === 0 ? (
       <Redirect to="/" />
     ) : (
       <div id="interactive-sketch">
         <P5Wrapper
-          sketch={draw}
+          sketch={this.sketch()}
           saved={this.state.saved}
           history={this.props.history}
           createPattern={this.props.createPattern}

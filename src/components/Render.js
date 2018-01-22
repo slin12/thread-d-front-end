@@ -27,12 +27,6 @@ class Render extends React.Component {
       geometry: { vertices: [], faces: [], faceVertexUvs: [] },
       texture: { uuid: "" }
     };
-
-    // this._onAnimate = () => {
-    //   this.setState({
-    //     cubeRotation: new THREE.Euler(0, this.state.cubeRotation.y + 0.01, 0)
-    //   });
-    // };
   }
 
   componentDidMount() {
@@ -44,7 +38,7 @@ class Render extends React.Component {
     loader.load(`/${model}-tee.json`, geometry => {
       geometry.center();
       this.setState({ geometry: geometry });
-      //set up orbit controls. need the timeout currently because controls may load before everything else.
+      // set up orbit controls. need the timeout currently because controls may load before everything else.
       setTimeout(() => {
         const controls = new OrbitControls(this.refs.camera);
         controls.position0.set(0, 0, 0);

@@ -63,10 +63,24 @@ class PatternSelector extends React.Component {
                     : "interactive-img"
                 }
                 onClick={() => this.props.setPatternName("square")}
-                alt="scroll-interaction"
+                alt="square-interaction"
               />
               <br />
               <small>Square</small>
+            </div>
+            <div>
+              <img
+                src="draw-icon.png"
+                className={
+                  this.props.selectedPattern === "sound"
+                    ? "interactive-img interaction-selected"
+                    : "interactive-img"
+                }
+                onClick={() => this.props.setPatternName("sound")}
+                alt="sound-interaction"
+              />
+              <br />
+              <small>Sound</small>
             </div>
           </div>
           <h4>Choose A Color Scheme</h4>
