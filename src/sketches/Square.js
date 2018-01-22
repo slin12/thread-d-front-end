@@ -10,13 +10,15 @@ let colors = [
 ];
 
 // let mic = new p5.AudioIn();
-let distance = 50;
-let size = 3;
+let distance;
+let size;
 let loop = true;
 
 export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
+    let distance = 50;
+    let size = 3;
     p.background(10);
   };
 
