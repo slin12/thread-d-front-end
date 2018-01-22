@@ -19,6 +19,7 @@ export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
+    console.log("mic is", mic);
     mic.start();
   };
 
