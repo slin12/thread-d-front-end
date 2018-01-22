@@ -3,10 +3,8 @@ import AWS from "../api/aws.js";
 import "p5/lib/addons/p5.sound";
 import p5 from "p5";
 
-let stroke = 1;
 let loop = true;
 let mic = new p5.AudioIn();
-
 let diameter;
 
 let colors = [
@@ -25,8 +23,27 @@ export default function sketch(p) {
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
-    console.log(props);
     colors = props.colors;
+    console.log(props);
+    if (props.saved) {
+      p.saveFrames("test", "jpg", 0.25, 25, function(data) {
+        let frame = data[0];
+        let blob = AWS.dataURItoBlob(frame.imageData);
+        let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
+        AWS.sendFile(file)
+          .then(data => {
+            props.createPattern(data.location, props.history);
+          })
+          .catch(err => console.error(err));
+        mic.stop();
+        p.remove();
+      });
+    } else if (props.backClicked) {
+      mic.stop();
+      mic.dispose();
+      p.remove();
+      props.history.push("/dashboard");
+    }
   };
 
   p.keyPressed = function() {

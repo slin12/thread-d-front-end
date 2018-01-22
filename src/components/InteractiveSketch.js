@@ -1,5 +1,5 @@
 import React from "react";
-import P5Wrapper from "react-p5-wrapper";
+import P5Wrapper from "../wrappers/react-p5-wrapper";
 import "../css/interactive.css";
 import scroll from "../sketches/Scroll";
 import square from "../sketches/Square";
@@ -34,7 +34,7 @@ class InteractiveSketch extends React.Component {
     switch (this.props.sketchName) {
       case "scroll":
         return scroll;
-      case "draw":
+      case "sound":
         return draw;
       case "square":
         return square;

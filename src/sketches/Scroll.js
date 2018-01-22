@@ -1,5 +1,7 @@
 import uuid from "uuid";
 import AWS from "../api/aws.js";
+import "p5/lib/addons/p5.sound";
+import p5 from "p5";
 
 let circles = [];
 let colors = [
@@ -9,6 +11,7 @@ let colors = [
   "rgb(129, 83, 85)",
   "rgb(82, 50, 73)"
 ];
+// let mic = new p5.AudioIn();
 let loop = true;
 
 export default function sketch(p) {
@@ -35,6 +38,7 @@ export default function sketch(p) {
         circles = [];
       });
     } else if (props.backClicked) {
+      // mic.stop();
       p.remove();
       circles = [];
       props.history.push("/dashboard");
