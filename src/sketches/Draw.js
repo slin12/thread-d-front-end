@@ -1,10 +1,11 @@
 import uuid from "uuid";
 import AWS from "../api/aws.js";
+
 import "p5/lib/addons/p5.sound";
 import p5 from "p5";
 
 let loop = true;
-let mic = new p5.AudioIn();
+let mic;
 let diameter;
 
 let colors = [
@@ -20,6 +21,7 @@ export default function sketch(p) {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
     console.log("mic is", mic);
+    mic = new p5.AudioIn()
     mic.start();
   };
 
@@ -37,6 +39,7 @@ export default function sketch(p) {
           })
           .catch(err => console.error(err));
         mic.stop();
+        mic.dispose();
         p.remove();
       });
     } else if (props.backClicked) {

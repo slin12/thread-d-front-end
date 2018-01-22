@@ -1,7 +1,5 @@
 import uuid from "uuid";
 import AWS from "../api/aws.js";
-import "p5/lib/addons/p5.sound";
-import p5 from "p5";
 
 let colors = [
   "rgb(203, 212, 194)",
