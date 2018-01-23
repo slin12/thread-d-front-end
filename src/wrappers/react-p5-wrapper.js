@@ -20,6 +20,11 @@ export default class P5Wrapper extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log("unmounted!");
+    this.canvas.remove();
+  }
+
   render() {
     return <div ref={wrapper => (this.wrapper = wrapper)} />;
   }
