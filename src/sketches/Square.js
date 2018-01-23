@@ -22,6 +22,10 @@ export default function sketch(p) {
     loop = true;
   };
 
+  p.removeMic = function() {
+    return null;
+  };
+
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     colors = props.colors;
     if (props.saved) {

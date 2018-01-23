@@ -13,6 +13,10 @@ export default function sketch(p) {
     circles = [];
   };
 
+  p.removeMic = function() {
+    return null;
+  };
+
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     colors = props.colors;
     this.circles();

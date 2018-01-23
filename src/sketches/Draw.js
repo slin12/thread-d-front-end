@@ -26,6 +26,11 @@ export default function sketch(p) {
     loop = true;
   };
 
+  p.removeMic = function() {
+    mic.stop();
+    mic.dispose();
+  };
+
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     colors = props.colors;
     console.log(props);
@@ -39,13 +44,11 @@ export default function sketch(p) {
             props.createPattern(data.location, props.history);
           })
           .catch(err => console.error(err));
-        mic.stop();
-        mic.dispose();
+        this.removeMic();
         p.remove();
       });
     } else if (props.backClicked) {
-      mic.stop();
-      mic.dispose();
+      this.removeMic();
       p.remove();
       props.history.push("/dashboard");
     }

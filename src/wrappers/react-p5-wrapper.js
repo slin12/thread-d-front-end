@@ -21,7 +21,7 @@ export default class P5Wrapper extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log("unmounted!");
+    this.canvas.removeMic();
     this.canvas.remove();
   }
 
