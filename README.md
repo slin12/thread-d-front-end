@@ -14,6 +14,7 @@ live demo: [thread'd][2]
 - orbit controls for zooming and moving around model 
 - customizable colors & default colors schemes
 - sharable unique links & integration to post to twitter, reddit, linkedin, and email
+- custom CSS utilizing flexbox
 
 ### Front End built with: 
  
