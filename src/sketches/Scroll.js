@@ -2,13 +2,7 @@ import uuid from "uuid";
 import AWS from "../api/aws.js";
 
 let circles = [];
-let colors = [
-  "rgb(203, 212, 194)",
-  "rgb(219, 235, 192)",
-  "rgb(195, 178, 153)",
-  "rgb(129, 83, 85)",
-  "rgb(82, 50, 73)"
-];
+let colors = [];
 let loop;
 
 export default function sketch(p) {
@@ -16,6 +10,7 @@ export default function sketch(p) {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
     loop = true;
+    circles = [];
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
