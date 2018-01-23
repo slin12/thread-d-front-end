@@ -33,7 +33,7 @@ class Render extends React.Component {
     const texture = new THREE.TextureLoader();
     texture.crossOrigin = "Anonymous";
     texture.load(
-      `https://thread-d.s3.amazonaws.com/undefined/${
+      `https://s3.amazonaws.com/thread-d/undefined/${
         this.props.match.params.url
       }.jpg`,
       texture => {

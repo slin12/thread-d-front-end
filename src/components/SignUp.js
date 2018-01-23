@@ -44,7 +44,7 @@ class SignUp extends React.Component {
     return (
       <div>
         {this.props.user.error ? (
-          <div id="error-message">{this.props.user.error}</div>
+          <div id="error-message">{this.props.user.error.join(", ")}</div>
         ) : null}
         <h1 id="login-signup-title">thread'd</h1>
         <div id="login-signup-container">
@@ -100,7 +100,17 @@ class SignUp extends React.Component {
                   this.handleChange(e, "signup", "passwordConfirm");
                 }}
               />
-              <input id="signup-submit" type="submit" value="SIGN UP" />
+              <input
+                id="signup-submit"
+                style={
+                  this.state.signup.password ===
+                  this.state.signup.passwordConfirm
+                    ? { height: "50px" }
+                    : { height: "0px" }
+                }
+                type="submit"
+                value="SIGN UP"
+              />
             </form>
           </ReactCSSTransitionGroup>
 
