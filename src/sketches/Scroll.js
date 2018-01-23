@@ -9,12 +9,13 @@ let colors = [
   "rgb(129, 83, 85)",
   "rgb(82, 50, 73)"
 ];
-let loop = true;
+let loop;
 
 export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
+    loop = true;
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {

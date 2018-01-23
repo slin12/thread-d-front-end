@@ -11,7 +11,7 @@ let colors = [
 
 let distance;
 let size;
-let loop = true;
+let loop;
 
 export default function sketch(p) {
   p.setup = function() {
@@ -19,6 +19,7 @@ export default function sketch(p) {
     distance = 50;
     size = 3;
     p.background(10);
+    loop = true;
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {

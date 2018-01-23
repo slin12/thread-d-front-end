@@ -4,7 +4,7 @@ import AWS from "../api/aws.js";
 import "p5/lib/addons/p5.sound";
 import p5 from "p5";
 
-let loop = true;
+let loop;
 let mic;
 let diameter;
 
@@ -21,8 +21,9 @@ export default function sketch(p) {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
     console.log("mic is", mic);
-    mic = new p5.AudioIn()
+    mic = new p5.AudioIn();
     mic.start();
+    loop = true;
   };
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {

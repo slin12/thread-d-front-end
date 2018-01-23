@@ -62,7 +62,14 @@ class CustomColorPicker extends React.Component {
     };
 
     return (
-      <div id="custom-color-picker-background">
+      <div
+        id="custom-color-picker-background"
+        onClick={e =>
+          e.target.id === "custom-color-picker-background"
+            ? this.props.toggleModal()
+            : null
+        }
+      >
         <div
           id="custom-color-picker-container"
           style={{
