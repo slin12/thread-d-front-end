@@ -11,6 +11,10 @@ class PatternContainer extends React.Component {
     imageArrayIdx: 0
   };
 
+  // componentWillReceiveProps() {
+  //   this.setState({ imageArrayIdx: 0 });
+  // }
+
   //these two functions handle the arrows that show your patterns
   handleBackClick = () => {
     let newState = this.state.imageArrayIdx - 1;
@@ -44,6 +48,13 @@ class PatternContainer extends React.Component {
     this.props.history.push(`/render/${slug}`);
   };
 
+  handleDelete = url => {
+    if (this.props.patterns[this.state.imageArrayIdx].length == 1) {
+      this.setState({ imageArrayIdx: 0 });
+    }
+    this.props.deletePattern(url);
+  };
+
   patterns = () => {
     if (this.props.patterns.length > 0) {
       return this.props.patterns[this.state.imageArrayIdx].map(p => (
@@ -63,7 +74,7 @@ class PatternContainer extends React.Component {
           <div
             className="delete-pattern"
             onClick={() => {
-              this.props.deletePattern(p.url);
+              this.handleDelete(p.url);
             }}
           >
             ✖︎
