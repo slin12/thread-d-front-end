@@ -31,11 +31,9 @@ export default function sketch(p) {
             props.createPattern(data.location, props.history);
           })
           .catch(err => console.error(err));
-        p.remove();
         circles = [];
       });
     } else if (props.backClicked) {
-      p.remove();
       circles = [];
       props.history.push("/dashboard");
     }

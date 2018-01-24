@@ -38,10 +38,8 @@ export default function sketch(p) {
             props.createPattern(data.location, props.history);
           })
           .catch(err => console.error(err));
-        p.remove();
       });
     } else if (props.backClicked) {
-      p.remove();
       props.history.push("/dashboard");
     }
   };

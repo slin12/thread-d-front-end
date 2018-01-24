@@ -44,12 +44,8 @@ export default function sketch(p) {
             props.createPattern(data.location, props.history);
           })
           .catch(err => console.error(err));
-        this.removeMic();
-        p.remove();
       });
     } else if (props.backClicked) {
-      this.removeMic();
-      p.remove();
       props.history.push("/dashboard");
     }
   };
