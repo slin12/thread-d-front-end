@@ -37,7 +37,6 @@ export default function sketch(p) {
         let frame = data[0];
         let blob = AWS.dataURItoBlob(frame.imageData);
         let file = new File([blob], `${uuid()}.jpg`, { type: "image/jpeg" });
-        console.log("file is", file);
         AWS.sendFile(file)
           .then(data => {
             props.createPattern(data.location, props.history);
