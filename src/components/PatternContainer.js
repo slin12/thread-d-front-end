@@ -76,7 +76,6 @@ class PatternContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <ReactCSSTransitionGroup
         transitionName="patterns"

@@ -16,7 +16,6 @@ import AuthAdapter from "../api";
 export function createUser(user, history) {
   return dispatch => {
     AuthAdapter.signup(user).then(res => {
-      console.log(res);
       if (!res.error) {
         localStorage.setItem("token", res.token);
         dispatch({ type: SET_CURRENT_USER, user: res.user });
@@ -31,7 +30,6 @@ export function createUser(user, history) {
 export function loginUser(user, history) {
   return dispatch => {
     AuthAdapter.login(user).then(res => {
-      console.log(res);
       if (!res.error) {
         localStorage.setItem("token", res.token);
         dispatch({ type: SET_CURRENT_USER, user: res.user });

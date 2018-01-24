@@ -89,7 +89,6 @@ class Render extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const width = window.innerWidth; // canvas width
     const height = window.innerHeight; // canvas height
     //get current url for sharing purposes

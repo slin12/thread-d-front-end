@@ -20,7 +20,6 @@ export default function sketch(p) {
   p.setup = function() {
     p.createCanvas(window.innerWidth, window.innerHeight);
     p.background(10);
-    console.log("mic is", mic);
     mic = new p5.AudioIn();
     mic.start();
     loop = true;
@@ -33,7 +32,6 @@ export default function sketch(p) {
 
   p.myCustomRedrawAccordingToNewPropsHandler = function(props) {
     colors = props.colors;
-    console.log(props);
     if (props.saved) {
       p.saveFrames("test", "jpg", 0.25, 25, function(data) {
         let frame = data[0];
