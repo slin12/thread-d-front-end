@@ -9,7 +9,7 @@
 
 #interactive-save {
   float: right;
-  background-color: #ffffffff;
+  background-color: #ffffff;
   border: none;
   color: black;
   height: 35px;
@@ -34,7 +34,7 @@
   height: 35px;
   width: 150px;
   font-family: "Muli";
-  background-color: #ffffffff;
+  background-color: #ffffff;
   font-size: 1em;
   font-weight: 300;
   transition: 0.5s all;
