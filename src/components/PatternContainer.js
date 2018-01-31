@@ -49,7 +49,7 @@ class PatternContainer extends React.Component {
   };
 
   handleDelete = url => {
-    if (this.props.patterns[this.state.imageArrayIdx].length == 1) {
+    if (this.props.patterns[this.state.imageArrayIdx].length === 1) {
       this.setState({ imageArrayIdx: 0 });
     }
     this.props.deletePattern(url);

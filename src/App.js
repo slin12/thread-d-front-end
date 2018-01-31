@@ -23,23 +23,27 @@ class App extends Component {
 
   componentWillMount() {
     //if we already have a token, hit our backend to confirm it
-    if (localStorage.getItem("token")) {
-      AuthAdapter.authorizeUser().then(res => {
-        if (res.errors) {
-          localStorage.clear();
-        } else {
-          this.props.setLoggedIn(res);
-          this.setState({
-            authCompleted: true
-          });
-        }
-      });
-      //or direct them to the landing page
-    } else {
-      this.setState({
-        authCompleted: true
-      });
-    }
+    // if (localStorage.getItem("token")) {
+    AuthAdapter.authorizeUser().then(res => {
+      console.log(res);
+      if (res.errors) {
+        localStorage.clear();
+        this.setState({
+          authCompleted: true
+        });
+      } else {
+        this.props.setLoggedIn(res);
+        this.setState({
+          authCompleted: true
+        });
+      }
+    });
+    //or direct them to the landing page
+    // } else {
+    //   this.setState({
+    //     authCompleted: true
+    //   });
+    // }
   }
 
   render() {
