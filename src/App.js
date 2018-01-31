@@ -22,15 +22,15 @@ class App extends Component {
   };
 
   componentWillMount() {
-    //if we already have a token, hit our backend to confirm it
-    // if (localStorage.getItem("token")) {
+    //request the backend for heroku server wakeup
     AuthAdapter.authorizeUser().then(res => {
-      console.log(res);
+      //no token or incorrect token, direct them to landing page
       if (res.errors) {
         localStorage.clear();
         this.setState({
           authCompleted: true
         });
+        //or else set the current user, direct to dashboard
       } else {
         this.props.setLoggedIn(res);
         this.setState({
@@ -38,12 +38,6 @@ class App extends Component {
         });
       }
     });
-    //or direct them to the landing page
-    // } else {
-    //   this.setState({
-    //     authCompleted: true
-    //   });
-    // }
   }
 
   render() {
