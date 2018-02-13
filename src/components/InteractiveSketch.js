@@ -44,7 +44,7 @@ class InteractiveSketch extends React.Component {
   };
 
   sketchDescription = () => {
-    switch (this.props.skethName) {
+    switch (this.props.sketchName) {
       case "scroll":
         return (
           <span>
